@@ -3,21 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Median of Two Sorted Arrays | 学海无涯</title>
+  <title>Pow(x,n) | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="/css/font-awesome.min.css" rel="stylesheet">
-  <meta name="description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+  <meta name="description" content="问题来源 问题简介 实现求幂函数     解题思路求一个数的n次幂，并不需要进行n次乘法，如    2的10次方，就是2的平方的5次方    2的平方的5次方，就是2的平方的平方的2次方再乘以2    以此类推最后2的10次方只需进行4次乘法即可。  Code#include &amp;lt;iostream&amp;gt; using namespace std;  class Solution { publ">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Median of Two Sorted Arrays">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/index.html">
+<meta property="og:title" content="Pow(x,n)">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/07/Pow-x-n/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+<meta property="og:description" content="问题来源 问题简介 实现求幂函数     解题思路求一个数的n次幂，并不需要进行n次乘法，如    2的10次方，就是2的平方的5次方    2的平方的5次方，就是2的平方的平方的2次方再乘以2    以此类推最后2的10次方只需进行4次乘法即可。  Code#include &amp;lt;iostream&amp;gt; using namespace std;  class Solution { publ">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-07T16:31:54.466Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/pow-x-n.png">
+<meta property="og:updated_time" content="2017-09-07T16:32:47.338Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Median of Two Sorted Arrays">
-<meta name="twitter:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+<meta name="twitter:title" content="Pow(x,n)">
+<meta name="twitter:description" content="问题来源 问题简介 实现求幂函数     解题思路求一个数的n次幂，并不需要进行n次乘法，如    2的10次方，就是2的平方的5次方    2的平方的5次方，就是2的平方的平方的2次方再乘以2    以此类推最后2的10次方只需进行4次乘法即可。  Code#include &amp;lt;iostream&amp;gt; using namespace std;  class Solution { publ">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/pow-x-n.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -132,10 +134,10 @@
 </aside>
         
         <section id="main">
-        <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Pow-x-n" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/07/Median-of-Two-Sorted-Arrays/" class="article-date">
-  <time datetime="2017-09-07T08:05:44.000Z" itemprop="datePublished">2017-09-07</time>
+    <a href="/2017/09/07/Pow-x-n/" class="article-date">
+  <time datetime="2017-09-07T15:56:53.000Z" itemprop="datePublished">2017-09-07</time>
 </a>
     
   <div class="article-category">
@@ -150,7 +152,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Median of Two Sorted Arrays
+      Pow(x,n)
     </h1>
   
 
@@ -159,33 +161,57 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/" target="_blank" rel="external">问题来源</a></li>
+<li><a href="https://leetcode.com/problems/powx-n/description/" target="_blank" rel="external">问题来源</a></li>
 <li>问题简介<blockquote>
-<p>给定两个有序数组a[m], b[n]，找出中位数<br>要求时间复杂度为O(log(m+n))</p>
+<p>实现求幂函数</p>
 </blockquote>
 </li>
 </ul>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
-<li>以 <code>O(log(m+n))</code> 的时间复杂度将两个有序数组合成一个有序数组。</li>
-</ul>
-<div class="info">显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较</div>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>求一个数的n次幂，并不需要进行n次乘法，如<br><br><pre>    2的10次方，就是2的平方的5次方<br>    2的平方的5次方，就是2的平方的平方的2次方再乘以2<br>    以此类推<br></pre><br>最后2的10次方只需进行4次乘法即可。<br></div>
 
-<ul>
-<li>找出位于中间的数  <i class="fa fa-check" aria-hidden="true"></i></li>
-</ul>
-<div class="info">这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。</div>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
+using namespace std;
 
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>啃不动
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (x == 0) {
+            return 0;
+        }
+        if (n == 0) {
+            return 1;
+        }
+        if (n &lt; 0) {
+            x = 1 / x;
+            n = -n;
+        }
+        double t = x;
+        while (n != 1) {
+            x = n % 2 ? x * x * t : x * x;
+            n /= 2;
+        }
+        return x;
+    }
+};
+int main() {
+    cout &lt;&lt; Solution().myPow(2, 3) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, -3) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, 10) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, 100) &lt;&lt; endl;
+
+
+    return 0;
+}
 </code></pre><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p>暂无</p>
+<p><img src="/img/pow-x-n.png" alt="pow-x-n.png"></p>
 <hr>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7aog45l00001wu685m0w69w" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7aog46700051wu62ukm2s4n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -196,19 +222,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/09/07/Pow-x-n/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Pow(x,n)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/07/hello/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/07/Median-of-Two-Sorted-Arrays/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">hello.md</div>
+      <div class="article-nav-title">Median of Two Sorted Arrays</div>
     </a>
   
 </nav>

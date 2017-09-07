@@ -5,6 +5,7 @@
   
   <title>学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
   <meta name="description" content="个人博客">
 <meta property="og:type" content="website">
 <meta property="og:title" content="学海无涯">
@@ -15,13 +16,13 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学海无涯">
 <meta name="twitter:description" content="个人博客">
-  
+  <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
   
-  
+  <!-- 
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
+   -->
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -110,6 +111,10 @@
       <ul>
         
           <li>
+            <a href="/2017/09/07/Pow-x-n/">Pow(x,n)</a>
+          </li>
+        
+          <li>
             <a href="/2017/09/07/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
           </li>
         
@@ -126,6 +131,95 @@
         
         <section id="main">
         
+  
+    <article id="post-Pow-x-n" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/07/Pow-x-n/" class="article-date">
+  <time datetime="2017-09-07T15:56:53.000Z" itemprop="datePublished">2017-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/Pow-x-n/">Pow(x,n)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://leetcode.com/problems/powx-n/description/" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p>实现求幂函数</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>求一个数的n次幂，并不需要进行n次乘法，如<br><br><pre>    2的10次方，就是2的平方的5次方<br>    2的平方的5次方，就是2的平方的平方的2次方再乘以2<br>    以此类推<br></pre><br>最后2的10次方只需进行4次乘法即可。<br></div>
+
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (x == 0) {
+            return 0;
+        }
+        if (n == 0) {
+            return 1;
+        }
+        if (n &lt; 0) {
+            x = 1 / x;
+            n = -n;
+        }
+        double t = x;
+        while (n != 1) {
+            x = n % 2 ? x * x * t : x * x;
+            n /= 2;
+        }
+        return x;
+    }
+};
+int main() {
+    cout &lt;&lt; Solution().myPow(2, 3) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, -3) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, 10) &lt;&lt; endl;
+    cout &lt;&lt; Solution().myPow(2, 100) &lt;&lt; endl;
+
+
+    return 0;
+}
+</code></pre><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p><img src="/img/pow-x-n.png" alt="pow-x-n.png"></p>
+<hr>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7aog46700051wu62ukm2s4n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -161,11 +255,26 @@
 </li>
 </ul>
 <hr>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li>以 <code>O(log(m+n))</code> 的时间复杂度将两个有序数组合成一个有序数组。</li>
+</ul>
+<div class="info">显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较</div>
+
+<ul>
+<li>找出位于中间的数  <i class="fa fa-check" aria-hidden="true"></i></li>
+</ul>
+<div class="info">这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。</div>
+
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>啃不动
+</code></pre><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p>暂无</p>
+<hr>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7ab8ny000004su69b4g9wwo" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7aog45l00001wu685m0w69w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -211,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/hello/" data-id="cj7ab8ny600014su6zsbxqp97" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/hello/" data-id="cj7aog46900071wu6u0mt8ecx" class="article-share-link">Share</a>
       
       
     </footer>
