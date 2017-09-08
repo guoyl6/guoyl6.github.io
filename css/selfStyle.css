@@ -1,0 +1,45 @@
+.info {
+  position: relative;
+  color: #555;
+  margin-left: 20px;
+  line-height: 1.2;
+  background-color: rgb(238, 227, 194);
+  padding: 15px 8px;
+  border-radius: 8px 0px 8px 0;
+}
+
+.info pre {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.info:before {
+    content: "";
+    display: block;
+    border: 10px solid rgb(238, 227, 194);
+    position: absolute;
+    bottom: 0px;
+    left: -18px;
+    border-width: 5px 10px;
+    border-color: transparent rgb(238, 227, 194) transparent transparent;
+    transform: rotate(-30deg) translateY(6px);
+}
+
+.info br:first-child,
+.info br:last-child,
+.info ul>br,
+.info ul+br {
+	display: none;
+}
+
+.info li {
+	margin: 5px;
+}
+
+.fa.fa-check {
+	color: #4caf50;
+}
+
+.article-entry p {
+	text-align: left;
+}

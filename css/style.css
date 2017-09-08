@@ -1372,14 +1372,3 @@ pre .javascript .function {
   margin-right: 5px;
   display: inline-block;
 }
-.info {
-  margin-left: 20px;
-  line-height: 1.2;
-  background-color: #eee3c2;
-  padding: 8px;
-  border-radius: 8px 0px 8px 0;
-}
-.info pre {
-  margin-left: 20px;
-  margin-right: 20px;
-}

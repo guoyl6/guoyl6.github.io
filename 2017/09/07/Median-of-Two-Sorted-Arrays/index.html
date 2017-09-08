@@ -5,19 +5,18 @@
   
   <title>Median of Two Sorted Arrays | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="/css/font-awesome.min.css" rel="stylesheet">
-  <meta name="description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+  <meta name="description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。      显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Median of Two Sorted Arrays">
 <meta property="og:url" content="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+<meta property="og:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。      显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-07T16:31:54.466Z">
+<meta property="og:updated_time" content="2017-09-08T15:35:17.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Median of Two Sorted Arrays">
-<meta name="twitter:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。  显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。">
+<meta name="twitter:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))     解题思路 以 O(log(m+n)) 的时间复杂度将两个有序数组合成一个有序数组。      显然不行，想要让 m + n 个数有序，至少也要进行 m + n 次比较   找出位于中间的数    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -26,6 +25,8 @@
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
    -->
   <link rel="stylesheet" href="/css/style.css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/selfStyle.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,6 +114,10 @@
       <ul>
         
           <li>
+            <a href="/2017/09/08/n-Queens/">n-Queens</a>
+          </li>
+        
+          <li>
             <a href="/2017/09/07/Pow-x-n/">Pow(x,n)</a>
           </li>
         
@@ -169,7 +174,7 @@
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
 <li>以 <code>O(log(m+n))</code> 的时间复杂度将两个有序数组合成一个有序数组。</li>
 </ul>
-<div class="info">显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较</div>
+<div class="info"><br>    显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较<br></div>
 
 <ul>
 <li>找出位于中间的数  <i class="fa fa-check" aria-hidden="true"></i></li>
@@ -185,7 +190,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7aohme700002ou6shgz1sv4" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7c55emx00078wu61odrmf3o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>

@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>学海无涯</title>
+  <title>n-Queens | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学海无涯">
-<meta property="og:url" content="https://guoyl6.github.io/index.html">
+  <meta name="description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。     解题思路    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?            每放置一个皇后就对以前放置过的皇后进行逐一检查">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="n-Queens">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/08/n-Queens/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。     解题思路    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?            每放置一个皇后就对以前放置过的皇后进行逐一检查">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/n-Queens.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/profile/n-Queens.png">
+<meta property="og:updated_time" content="2017-09-08T17:13:28.519Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学海无涯">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="n-Queens">
+<meta name="twitter:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。     解题思路    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?            每放置一个皇后就对以前放置过的皇后进行逐一检查">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/n-Queens.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -135,9 +140,7 @@
 </aside>
         
         <section id="main">
-        
-  
-    <article id="post-n-Queens" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-n-Queens" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/08/n-Queens/" class="article-date">
   <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">2017-09-08</time>
@@ -154,8 +157,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/08/n-Queens/">n-Queens</a>
+    <h1 class="article-title" itemprop="name">
+      n-Queens
     </h1>
   
 
@@ -267,228 +270,19 @@ int main() {
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Pow-x-n" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/07/Pow-x-n/" class="article-date">
-  <time datetime="2017-09-07T15:56:53.000Z" itemprop="datePublished">2017-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/Pow-x-n/">Pow(x,n)</a>
-    </h1>
+    <a href="/2017/09/07/Pow-x-n/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Pow(x,n)</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="https://leetcode.com/problems/powx-n/description/" target="_blank" rel="external">问题来源</a></li>
-<li>问题简介<blockquote>
-<p>实现求幂函数</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    求一个数的n次幂，并不需要进行n次乘法，如<br>    <pre>    2的10次方，就是2的平方的5次方<br>        2的平方的5次方，就是2的平方的平方的2次方再乘以2<br>        以此类推<br>    </pre><br>    最后2的10次方只需进行4次乘法即可。<br></div></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(log(n))</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-class Solution {
-public:
-    double myPow(double x, int n) {
-        if (x == 0) {
-            return 0;
-        }
-        if (n == 0) {
-            return 1;
-        }
-        if (n &lt; 0) {
-            x = 1 / x;
-            n = -n;
-        }
-        double t = 1;
-        while (n != 1) {
-            if (n &amp; 1) {
-                t *= x;
-            }
-            x *= x;
-            n /= 2;
-        }
-        return t * x;
-    }
-};
-int main() {
-    cout &lt;&lt; Solution().myPow(2, 3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, -3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 10) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 100) &lt;&lt; endl;
-
-
-    return 0;
-}
-</code></pre><hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/pow-x-n.png" alt="pow-x-n.png"></p>
-<hr>
-</blockquote>
-<h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7c55emk00028wu61xasykph" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/07/Median-of-Two-Sorted-Arrays/" class="article-date">
-  <time datetime="2017-09-07T08:05:44.000Z" itemprop="datePublished">2017-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/" target="_blank" rel="external">问题来源</a></li>
-<li>问题简介<blockquote>
-<p>给定两个有序数组a[m], b[n]，找出中位数<br>要求时间复杂度为O(log(m+n))</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
-<li>以 <code>O(log(m+n))</code> 的时间复杂度将两个有序数组合成一个有序数组。</li>
-</ul>
-<div class="info"><br>    显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较<br></div>
-
-<ul>
-<li>找出位于中间的数  <i class="fa fa-check" aria-hidden="true"></i></li>
-</ul>
-<div class="info">这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。</div>
-
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>啃不动
-</code></pre><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p>暂无</p>
-<hr>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Median-of-Two-Sorted-Arrays/" data-id="cj7c55emx00078wu61odrmf3o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/07/hello/" class="article-date">
-  <time datetime="2017-09-07T07:48:47.000Z" itemprop="datePublished">2017-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hello/">hello</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/hello/">hello.md</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h2><ul>
-<li><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">markdown</a></li>
-<li><a href="https://cczeng.github.io/2017/05/03/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github-Pages%E6%90%AD%E5%BB%BA%E8%B5%B7%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E2%80%94%E2%80%94%E7%BB%86%E6%95%B0%E4%B8%80%E8%B7%AF%E7%9A%84%E5%9D%91/" target="_blank" rel="external">如何使用github建立blog？</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/hello/" data-id="cj7c55emc00008wu6nva16bg8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
         </section>
