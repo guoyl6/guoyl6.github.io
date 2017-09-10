@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/sudoku.png">
-<meta property="og:updated_time" content="2017-09-10T13:07:14.029Z">
+<meta property="og:updated_time" content="2017-09-10T18:16:12.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sudoku Solver">
 <meta name="twitter:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
@@ -56,8 +56,8 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
-        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar'></a>
-        <a class="main-nav-link fa fa-arrow-up" href="#header"></a>
+        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar' title="收起或展开分类列表"></a>
+        <a class="main-nav-link fa fa-arrow-up" href="#header" title="回到顶部"></a>
       </nav>
       <!-- <nav id="sub-nav">
         
@@ -193,44 +193,153 @@
 <hr>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
-#include &lt;functional&gt;
-#include &lt;vector&gt;
 #include &lt;stack&gt;
 #include &lt;string&gt;
 using namespace std;
 
 struct Node {
-    Node() {};
-    Node(int row, int col, int num) : col(col), row(row), num(num) { block = row / 3 * 3 + col / 3; };
+    Node() { set(0, 0, 0, false); };
+    Node(int row, int col, int num) { set(row, col, num, false); };
+    void set(int r, int c, int n, bool s) {
+        col = c;
+        row = r;
+        num = n;
+        block = row / 3 * 3 + col / 3;
+        seted = s;
+    }
+    bool seted;
     int col,
         row,
         block,
         num;
 };
 
-bool solve(char data[9][10]) {
-    bool row_occupied[9][10] = {},
-        col_occupied[9][10] = {},
-        block_occupied[9][10] = {};
+class Solution {
+public:
+    Solution(char data[9][10]) {
+        init(data);
+    }
 
-    int data_clone[9][10] = {};
+    ~Solution() {
+        for (int i = 0; i &lt; 9; i++) {
+            delete[] data[i];
+        }
+        delete[] data;
+    }
 
-    function&lt;void(bool p[][10], int, int)&gt; clear = [&amp;](bool p[][10], int i, int num) {p[i][num] = false; };
-    function&lt;void(bool p[][10], int, int)&gt; occupy = [&amp;](bool p[][10], int i, int num) { p[i][num] = true; };
-    function&lt;void(Node)&gt; set = [&amp;](Node cur) {
-        occupy(row_occupied, cur.row, cur.num);
-        occupy(col_occupied, cur.col, cur.num);
-        occupy(block_occupied, cur.block, cur.num);
-        data_clone[cur.row][cur.col] = cur.num;
-    }, unset = [&amp;](Node cur) {
-        clear(row_occupied, cur.row, cur.num);
-        clear(col_occupied, cur.col, cur.num);
-        clear(block_occupied, cur.block, cur.num);
-        data_clone[cur.row][cur.col] = &apos;.&apos;;
-    };
-    function&lt;bool(int, int, int)&gt; isNotOccupied = [&amp;](int row, int col, int num) {return !row_occupied[row][num] &amp;&amp; !col_occupied[col][num] &amp;&amp; !block_occupied[row / 3 * 3 + col / 3][num]; };
-    function&lt;bool(Node&amp;)&gt; next_space = [&amp;](Node &amp;cur) {
-        while (cur.row !=8 || cur.col != 8) {
+    bool solve() {
+        stack&lt;Node&gt; q;
+
+        q.push(Node(0, 0, 0));
+        while (!q.empty()) {
+            Node &amp;cur = q.top();
+            // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
+            t_node = cur;
+
+
+            if (!cur.seted) {
+                set(cur);
+            }
+            else {
+                unset(cur);
+                q.pop();
+                continue;
+            }
+
+            if (!next_space(t_node)) {
+                for (int i = 0; i &lt; 9; i++) {
+                    for (int j = 0; j &lt; 9; j++) {
+                        data[i][j] = data_int[i][j] + &apos;0&apos;;
+                    }
+                }
+                return true;
+            }
+
+            for (int i = 1; i &lt;= 9; i++) {
+                t_node.num = i;
+                if (isNotOccupied(t_node)) {
+                    q.push(t_node);
+                }
+            }
+        }
+        return false;
+    }
+
+    void display() {
+        for_each(data, data + 9, [&amp;](char *t) {
+            for (int i = 0; i &lt; 9; i++) {
+                cout &lt;&lt; t[i] &lt;&lt; &quot; &quot;;
+            }
+            cout &lt;&lt; endl;
+        });
+    }
+
+private:
+    char **data;
+    bool row_occupied[9][10],
+        col_occupied[9][10],
+        block_occupied[9][10];
+
+    uint8_t data_int[9][10];
+    Node t_node;
+
+    void init(char t[9][10]) {
+        data = new char*[9];
+        for (int i = 0; i &lt; 9; i++) {
+            data[i] = new char[10];
+            for (int j = 0; j &lt; 10; j++) {
+                data[i][j] = t[i][j];
+            }
+        }
+        for (int i = 0; i &lt; 9; i++) {
+            for (int j = 0; j &lt; 9; j++) {
+
+                for (int num = 0; num &lt; 10; num++) {
+                    t_node.set(i, j, num, false);
+                    unset(t_node);
+                }
+
+            }
+        }
+
+        for (int row = 0; row &lt; 9; row++) {
+            for (int col = 0; col &lt; 9; col++) {
+                if (data[row][col] == &apos;.&apos;) {
+                    continue;
+                }
+                else {
+                    t_node.set(row, col, data[row][col] - &apos;0&apos;, false);
+                    set(t_node);
+                }
+            }
+        }
+    }
+
+    inline void set(Node &amp;cur) {
+        row_occupied[cur.row][cur.num] = true;
+        col_occupied[cur.col][cur.num] = true;
+        block_occupied[cur.block][cur.num] = true;
+        cur.seted = true;
+
+        if (cur.num) {
+            data_int[cur.row][cur.col] = cur.num;
+        }
+    }
+
+    inline void unset(const Node &amp;cur) {
+        row_occupied[cur.row][cur.num] = false;
+        col_occupied[cur.col][cur.num] = false;
+        block_occupied[cur.block][cur.num] = false;
+
+        data_int[cur.row][cur.col] = &apos;.&apos;;
+    }
+
+    inline bool isNotOccupied(const Node &amp;cur) {
+        return (!row_occupied[cur.row][cur.num] &amp;&amp; !col_occupied[cur.col][cur.num] &amp;&amp; !block_occupied[cur.block][cur.num]);
+    }
+
+    inline bool next_space(Node &amp;cur) {
+        while (cur.row != 8 || cur.col != 8) {
             ++cur.col;
             if (cur.col == 9) {
                 ++cur.row;
@@ -242,70 +351,8 @@ bool solve(char data[9][10]) {
             }
         }
         return false;
-    };
-
-    for (int i = 0; i &lt; 9; i++) {
-        for (int j = 0; j &lt; 9; j++) {
-
-            for (int num = 1; num &lt; 10; num++) {
-                unset(Node(i, j, num));
-            }
-
-        }
     }
 
-    for (int row = 0; row &lt; 9; row++) {
-        for (int col = 0; col &lt; 9; col++) {
-            if (data[row][col] == &apos;.&apos;) {
-                continue;
-            }
-            else {
-                set(Node(row, col, data[row][col] - &apos;0&apos;));
-            }
-        }
-    }
-
-    stack&lt;Node&gt; q;
-    Node cur, next;
-
-    q.push(Node(0, 0, -1));
-    while (!q.empty()) {
-        cur = q.top();
-        // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
-        next = cur;
-
-        if (cur.num == -1) {
-            q.pop();
-        }
-        else {
-            if (isNotOccupied(cur.row, cur.col, cur.num)) {
-                set(cur);
-            }
-            else {
-                unset(cur);
-                q.pop();
-                continue;
-            }
-        }
-
-        if (!next_space(next)) {
-            set(cur);
-            for (int i = 0; i &lt; 9; i++) {
-                for (int j = 0; j &lt; 9; j++) {
-                    data[i][j] = data_clone[i][j] + &apos;0&apos;;
-                }
-            }
-            return true;
-        }
-
-        for (int i = 1; i &lt;= 9; i++) {
-            if (isNotOccupied(next.row, next.col, i)) {
-                next.num = i;
-                q.push(next);
-            }
-        }
-    }
-    return false;
 };
 
 int main() {
@@ -320,14 +367,10 @@ int main() {
         &quot;...419..5&quot;,
         &quot;....8..79&quot;
     };
-    bool rs = solve(data);
+    Solution t(data);
+    bool rs = t.solve();
     if (rs) {
-        for_each(data, data + 9, [&amp;](char *t){
-            for (int i = 0; i &lt; 9; i++) {
-                cout &lt;&lt; t[i] &lt;&lt; &quot; &quot;;
-            }
-            cout &lt;&lt; endl;
-        });
+        t.display();
     }
     else {
         cout &lt;&lt; &quot;无解&quot; &lt;&lt; endl;
@@ -344,7 +387,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7escvl600081su6ghoca4le" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7f2bjdq0008e0u6k7adsc75" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
