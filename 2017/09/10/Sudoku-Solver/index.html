@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>N-Queens | 学海无涯</title>
+  <title>Sudoku Solver | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
+  <meta name="description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
 <meta name="keywords" content="c++,回溯">
 <meta property="og:type" content="article">
-<meta property="og:title" content="N-Queens">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/08/N-Queens/index.html">
+<meta property="og:title" content="Sudoku Solver">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
+<meta property="og:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/n-Queens.png">
-<meta property="og:updated_time" content="2017-09-10T13:07:27.452Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/sudoku.png">
+<meta property="og:updated_time" content="2017-09-10T13:07:14.029Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="N-Queens">
-<meta name="twitter:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/n-Queens.png">
+<meta name="twitter:title" content="Sudoku Solver">
+<meta name="twitter:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/sudoku.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -138,10 +138,10 @@
 </aside>
         
         <section id="main">
-        <article id="post-N-Queens" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Sudoku-Solver" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/08/N-Queens/" class="article-date">
-  <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">2017-09-08</time>
+    <a href="/2017/09/10/Sudoku-Solver/" class="article-date">
+  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">2017-09-10</time>
 </a>
     
   <div class="article-category">
@@ -156,7 +156,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      N-Queens
+      Sudoku Solver
     </h1>
   
 
@@ -165,15 +165,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/n-queens-ii/description/" target="_blank" rel="external">问题来源</a></li>
+<li><a href="https://leetcode.com/problems/sudoku-solver/description/" title="解数独" target="_blank" rel="external">问题来源</a></li>
 <li>问题简介<blockquote>
-<p>在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。</p>
+<p>给定一个未填满的数独，要求你把它填满。</p>
 </blockquote>
 </li>
 </ul>
 <hr>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?<br>    <ul><br>        <li>每放置一个皇后就对以前放置过的皇后进行逐一检查</li><br>        <li>设置状态位，定义每一行，每一列，每一斜线上的格子是否可放置 <i class="fa fa-check" aria-hidden="true"></i><br>            <ul><br>                <li>如何设置以皇后为基点的斜线为不可放置状态<br>                    若两点(i1, j1)、(i2, j2)满足 i1 + j1 == i2 + j2，或 j1 - i1 == j2 - i2，则两点处于同一条斜线上（45度或135度）<br>                </li><br>            </ul><br>        </li><br>    </ul><br></div></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    采用回溯算法，在处理一个空白格子时，对 1 - 9 进行尝试，若冲突了则回退到上一步，否则尝试下一个格子。<br></div>
+
 <hr>
 <table>
 <thead>
@@ -184,78 +185,166 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">O(n!)</td>
-<td style="text-align:center">…</td>
+<td style="text-align:center">O(未知)</td>
+<td style="text-align:center">O(未知)</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;stack&gt;
+#include &lt;algorithm&gt;
 #include &lt;functional&gt;
+#include &lt;vector&gt;
+#include &lt;stack&gt;
+#include &lt;string&gt;
 using namespace std;
 
-int solveNQueens(int n) {
-    // 14ms
-    int count = 0;
-    bool *flag = new bool[5 * n - 2];
-    stack&lt;pair&lt;int, int&gt;&gt; q;
-    pair&lt;int, int&gt; cur;
-    auto isValid = [&amp;](int row, int col) -&gt; bool { return flag[col] &amp;&amp; flag[n + row + col] &amp;&amp; flag[4 * n - 2 + col - row]; };
-    auto occupy = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 0; };
-    auto clear = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 1; };
+struct Node {
+    Node() {};
+    Node(int row, int col, int num) : col(col), row(row), num(num) { block = row / 3 * 3 + col / 3; };
+    int col,
+        row,
+        block,
+        num;
+};
 
-    for (int i = 5 * n - 2 - 1;i--;) {
-        /*
-            flag[0] to flag[n - 1] to indicate if the column had a queen before.
-            flag[n] to flag[3 * n - 2] to indicate if the 45° diagonal had a queen before.
-            flag[3 * n - 1] to flag[5 * n - 3] to indicate if the 135° diagonal had a queen before.
-        */
-        flag[i] = true;
-    }
-    // 添加待处理点
-    for (int col = n; col--;) {
-        q.push(make_pair(0, col));
-    }
-    int nextRow = 1;
-    while (!q.empty()) {
-        cur = q.top();
-        nextRow = cur.first + 1;
-        if (cur.first == n - 1) {
-            count++;
-            q.pop();
-            continue;
-        } else if (isValid(cur.first, cur.second)) {
-            occupy(cur.first, cur.second);
-            for (int col = n; col--;) {
-                if (isValid(nextRow, col)) {
-                    q.push(make_pair(nextRow, col));
-                }
+bool solve(char data[9][10]) {
+    bool row_occupied[9][10] = {},
+        col_occupied[9][10] = {},
+        block_occupied[9][10] = {};
+
+    int data_clone[9][10] = {};
+
+    function&lt;void(bool p[][10], int, int)&gt; clear = [&amp;](bool p[][10], int i, int num) {p[i][num] = false; };
+    function&lt;void(bool p[][10], int, int)&gt; occupy = [&amp;](bool p[][10], int i, int num) { p[i][num] = true; };
+    function&lt;void(Node)&gt; set = [&amp;](Node cur) {
+        occupy(row_occupied, cur.row, cur.num);
+        occupy(col_occupied, cur.col, cur.num);
+        occupy(block_occupied, cur.block, cur.num);
+        data_clone[cur.row][cur.col] = cur.num;
+    }, unset = [&amp;](Node cur) {
+        clear(row_occupied, cur.row, cur.num);
+        clear(col_occupied, cur.col, cur.num);
+        clear(block_occupied, cur.block, cur.num);
+        data_clone[cur.row][cur.col] = &apos;.&apos;;
+    };
+    function&lt;bool(int, int, int)&gt; isNotOccupied = [&amp;](int row, int col, int num) {return !row_occupied[row][num] &amp;&amp; !col_occupied[col][num] &amp;&amp; !block_occupied[row / 3 * 3 + col / 3][num]; };
+    function&lt;bool(Node&amp;)&gt; next_space = [&amp;](Node &amp;cur) {
+        while (cur.row !=8 || cur.col != 8) {
+            ++cur.col;
+            if (cur.col == 9) {
+                ++cur.row;
+                cur.col = 0;
+            }
+            if (data[cur.row][cur.col] == &apos;.&apos;) {
+                cur.block = cur.row / 3 * 3 + cur.col / 3;
+                return true;
             }
         }
-        else {
-            clear(cur.first, cur.second);
-            q.pop();
+        return false;
+    };
+
+    for (int i = 0; i &lt; 9; i++) {
+        for (int j = 0; j &lt; 9; j++) {
+
+            for (int num = 1; num &lt; 10; num++) {
+                unset(Node(i, j, num));
+            }
+
         }
     }
-    delete[] flag;
-    return count;
-}
+
+    for (int row = 0; row &lt; 9; row++) {
+        for (int col = 0; col &lt; 9; col++) {
+            if (data[row][col] == &apos;.&apos;) {
+                continue;
+            }
+            else {
+                set(Node(row, col, data[row][col] - &apos;0&apos;));
+            }
+        }
+    }
+
+    stack&lt;Node&gt; q;
+    Node cur, next;
+
+    q.push(Node(0, 0, -1));
+    while (!q.empty()) {
+        cur = q.top();
+        // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
+        next = cur;
+
+        if (cur.num == -1) {
+            q.pop();
+        }
+        else {
+            if (isNotOccupied(cur.row, cur.col, cur.num)) {
+                set(cur);
+            }
+            else {
+                unset(cur);
+                q.pop();
+                continue;
+            }
+        }
+
+        if (!next_space(next)) {
+            set(cur);
+            for (int i = 0; i &lt; 9; i++) {
+                for (int j = 0; j &lt; 9; j++) {
+                    data[i][j] = data_clone[i][j] + &apos;0&apos;;
+                }
+            }
+            return true;
+        }
+
+        for (int i = 1; i &lt;= 9; i++) {
+            if (isNotOccupied(next.row, next.col, i)) {
+                next.num = i;
+                q.push(next);
+            }
+        }
+    }
+    return false;
+};
 
 int main() {
-    cout &lt;&lt; solveNQueens(8) &lt;&lt; endl;
+    char data[][10] = {
+        &quot;53..7....&quot;,
+        &quot;6..195...&quot;,
+        &quot;.98....6.&quot;,
+        &quot;8...6...3&quot;,
+        &quot;4..8.3..1&quot;,
+        &quot;7...2...6&quot;,
+        &quot;.6....28.&quot;,
+        &quot;...419..5&quot;,
+        &quot;....8..79&quot;
+    };
+    bool rs = solve(data);
+    if (rs) {
+        for_each(data, data + 9, [&amp;](char *t){
+            for (int i = 0; i &lt; 9; i++) {
+                cout &lt;&lt; t[i] &lt;&lt; &quot; &quot;;
+            }
+            cout &lt;&lt; endl;
+        });
+    }
+    else {
+        cout &lt;&lt; &quot;无解&quot; &lt;&lt; endl;
+    }
+
     return 0;
 }
 </code></pre><hr>
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/n-Queens.png" alt="N-Queens"></p>
+<p><img src="/img/sudoku.png" alt="Sudoku Solver" title="数独"></p>
 </blockquote>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/08/N-Queens/" data-id="cj7erx2wp0001pku68zemn465" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7erx2xe0009pku6t31yks2a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
@@ -266,19 +355,10 @@ int main() {
     
 <nav id="article-nav">
   
-    <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Find-Median
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/07/Pow-x-n/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Pow(x,n)</div>
+      <div class="article-nav-title">Find-Median</div>
     </a>
   
 </nav>

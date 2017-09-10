@@ -418,20 +418,20 @@ body {
   font-weight: 300;
   letter-spacing: 1px;
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 768px) {
   .main-nav-link {
     display: none;
   }
 }
-#main-nav-toggle {
-  display: none;
-}
 #main-nav-toggle:before {
   content: "\f0c9";
 }
-@media screen and (max-width: 479px) {
-  #main-nav-toggle {
-    display: block;
+.mobile-nav {
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .mobile-nav {
+    display: none;
   }
 }
 #sub-nav {
@@ -1264,27 +1264,28 @@ pre .keyword,
 pre .javascript .function {
   color: #c9c;
 }
-@media screen and (max-width: 479px) {
-  #mobile-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 280px;
-    height: 100%;
-    background: #191919;
-    border-right: 1px solid #fff;
-  }
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: #191919;
+  border-right: 1px solid #fff;
 }
-@media screen and (max-width: 479px) {
-  .mobile-nav-link {
-    display: block;
-    color: #999;
-    text-decoration: none;
-    padding: 15px 20px;
-    font-weight: bold;
-  }
-  .mobile-nav-link:hover {
-    color: #fff;
+.mobile-nav-link {
+  display: block;
+  color: #999;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-weight: bold;
+}
+.mobile-nav-link:hover {
+  color: #fff;
+}
+@media screen and (min-width: 768px) {
+  #mobile-nav {
+    display: none;
   }
 }
 @media screen and (min-width: 768px) {

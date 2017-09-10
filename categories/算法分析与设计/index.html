@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link href="/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/selfStyle.css" rel="stylesheet">
+  <link href="/css/re_landscape.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,12 +46,14 @@
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="javascript:(void 0)" id="main-nav-toggle" class="nav-icon mobile-nav"></a>
         
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar'></a>
+        <a class="main-nav-link fa fa-arrow-up" href="#header"></a>
       </nav>
       <!-- <nav id="sub-nav">
         
@@ -65,6 +68,7 @@
       <div class="outer">
         
           <aside id="sidebar">
+
   
     
   <div class="widget-wrap">
@@ -80,19 +84,10 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
     </div>
   </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/c/" style="font-size: 10px;">c++</a>
-    </div>
-  </div>
 
   
     
@@ -112,11 +107,15 @@
       <ul>
         
           <li>
-            <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+            <a href="/2017/09/10/Sudoku-Solver/">Sudoku Solver</a>
           </li>
         
           <li>
-            <a href="/2017/09/08/n-Queens/">n-Queens</a>
+            <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Find-Median</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/08/N-Queens/">N-Queens</a>
           </li>
         
           <li>
@@ -151,13 +150,13 @@
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" class="archive-article-date">
-  <time datetime="2017-09-10T04:58:44.000Z" itemprop="datePublished">Sep 10</time>
+      <a href="/2017/09/10/Sudoku-Solver/" class="archive-article-date">
+  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">Sep 10</time>
 </a>
       
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+      <a class="archive-article-title" href="/2017/09/10/Sudoku-Solver/">Sudoku Solver</a>
     </h1>
   
 
@@ -170,13 +169,32 @@
     <article class="archive-article archive-type-post">
   <div class="archive-article-inner">
     <header class="archive-article-header">
-      <a href="/2017/09/08/n-Queens/" class="archive-article-date">
+      <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" class="archive-article-date">
+  <time datetime="2017-09-10T04:58:44.000Z" itemprop="datePublished">Sep 10</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Find-Median</a>
+    </h1>
+  
+
+    </header>
+  </div>
+</article>
+  
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/09/08/N-Queens/" class="archive-article-date">
   <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">Sep 8</time>
 </a>
       
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/08/n-Queens/">n-Queens</a>
+      <a class="archive-article-title" href="/2017/09/08/N-Queens/">N-Queens</a>
     </h1>
   
 
@@ -230,6 +248,7 @@
     
 
 <script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/show_hide.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">

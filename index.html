@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link href="/css/font-awesome.min.css" rel="stylesheet">
   <link href="/css/selfStyle.css" rel="stylesheet">
+  <link href="/css/re_landscape.css" rel="stylesheet">
 </head>
 
 <body>
@@ -45,12 +46,14 @@
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+        <a href="javascript:(void 0)" id="main-nav-toggle" class="nav-icon mobile-nav"></a>
         
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar'></a>
+        <a class="main-nav-link fa fa-arrow-up" href="#header"></a>
       </nav>
       <!-- <nav id="sub-nav">
         
@@ -65,6 +68,7 @@
       <div class="outer">
         
           <aside id="sidebar">
+
   
     
   <div class="widget-wrap">
@@ -80,19 +84,10 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
     </div>
   </div>
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/c/" style="font-size: 10px;">c++</a>
-    </div>
-  </div>
 
   
     
@@ -112,11 +107,15 @@
       <ul>
         
           <li>
-            <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+            <a href="/2017/09/10/Sudoku-Solver/">Sudoku Solver</a>
           </li>
         
           <li>
-            <a href="/2017/09/08/n-Queens/">n-Queens</a>
+            <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Find-Median</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/08/N-Queens/">N-Queens</a>
           </li>
         
           <li>
@@ -135,7 +134,62 @@
 </aside>
         
         <section id="main">
+        <div id="home_page">
+	
+  
+    <article id="post-Sudoku-Solver" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/10/Sudoku-Solver/" class="article-date">
+  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">2017-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/10/Sudoku-Solver/">Sudoku Solver</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://leetcode.com/problems/sudoku-solver/description/" title="解数独" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p>给定一个未填满的数独，要求你把它填满。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/10/Sudoku-Solver/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7erx2xe0009pku6t31yks2a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-Median-of-Two-Sorted-Arrays" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -155,7 +209,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Median of Two Sorted Arrays</a>
+      <a class="article-title" href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Find-Median</a>
     </h1>
   
 
@@ -171,135 +225,18 @@
 </li>
 </ul>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
-<li>以 <code>O(log(m+n))</code> 的时间复杂度将两个有序数组合成一个有序数组。</li>
-</ul>
-<div class="info"><br>    显然不行，想要让 <code>m + n</code> 个数有序，至少也要进行 <code>m + n</code> 次比较<br></div>
-
-<ul>
-<li>找出位于中间的数  <i class="fa fa-check" aria-hidden="true"></i></li>
-</ul>
-<div class="info"><br>    这听起来像是废话。。其实，中位数就是位于中间的数，并不需要知道其两边数是否已正确的顺序排列。<br>    令两个数组为a，b且令其满足length_of_a &lt;= length_of_b<br>    于是，我们可以将a分成两部分<strong> leftpart_of_a, </strong> <strong> rightpart_of_a </strong>，将b分成两部分<strong> leftpart_of_b, </strong> <strong> rightpart_of_b </strong>。<br>    令<strong> leftpart </strong>由 leftpart_of_a + leftpart_of_b 组成，<strong> rightpart </strong>由 rightpart_of_a + rightpart_of_b组成<br>    这样，只要 <strong> leftpart中的数都比rightpart小</strong> 且 <strong> 长度相差不大于1 </strong> ，<br>    则<br>    <ul><br>        <li><br>            当总长度为奇数时，中位数为 <strong> 右半部分的最小 </strong><br>        </li><br>        <li><br>            当总长度为偶数时，中位数为 <strong> 左半部分的最大和右半部分的最小的一半 </strong><br>        </li><br>    </ul><br></div>
-
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(log(m+n))</td>
-<td style="text-align:center">O(1)</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-double middle_of_two_sorted_arrays(int *a, int l_a, int *b, int l_b) {
-    if (l_a &gt; l_b) {
-        // 保证a数组的长度小于等于b数组
-        swap(a, b);
-        swap(l_a, l_b);
-    }
-    if (l_b &lt;= 0) {
-        throw &quot;invalid length&quot;;
-    }
-
-    int b_l = 0, b_r = l_a, half_len = (l_a + l_b) / 2;
-    int i, j;
-    double zws_l = 0, zws_r = 0;
-
-    /*
-        从a中尝试挑选分割点，i的取值 [0, m]
-        i 将 a 分成 左右两部分: leftpart_of_a, rightpart_of_a
-        j 将 b 分成 左右两部分: leftpart_of_b, rightpart_of_b
-        令leftpart由 leftpart_of_a + leftpart_of_b 组成
-        令rightpart 由 rightpart_of_a + rightpart_of_b组成
-        若 分割点 i，j 使得 leftpart 中的所有数都小于 rightpart 中的所有数
-        即 a[i-1] &lt;= b[j] &amp;&amp; b[j-1] &lt;= a[i]
-        且 |length_of_leftpart - length_of_rightpart| &lt;= 1
-        则 i 为目标分割点
-        否则，
-        若左半部分中存在比右半部分大的数，则意味着分割点
-    */
-
-    while (b_l &lt;= b_r) {
-
-        i = (b_l + b_r) / 2;
-        j = half_len - i;
-
-        /*
-            a 的两个部分 [0, i - 1], [i, length_of_a - 1]
-            b 的两个部分 [0, j - 1], [j, length_of_b -1]
-        */
-
-        if (i &gt; 0 &amp;&amp; i &lt; l_a) {
-            if (a[i] &lt; b[j - 1]) {
-                // 分割点过小使得a中本应在左半部分中的数被分到了右半部分
-                b_l = i + 1;
-                continue;
-            }
-            else if (a[i - 1] &gt; b[j]) {
-                // 分割点过大使得a中本应在右半部分中的数被分到了左半部分
-                b_r = i - 1;
-                continue;
-            }
-        }
-
-        if (i == 0) {
-            zws_l = b[j - 1];
-            zws_r = j &lt; l_b ? b[j] : a[0];
-        }
-        else if (i == l_a) {
-            zws_l = j == 0 ? a[l_a-1] : b[j-1];
-            zws_r = b[j];
-        }
-        else {
-            zws_l = max(a[i-1], b[j-1]);
-            zws_r = min(a[i], b[j]);
-        }
-
-
-        if ((l_a + l_b) &amp; 1) {
-            return zws_r;
-        }
-        return (zws_l + zws_r) / 2;
-
-    }
-    throw &quot;invalid length&quot;;
-}
-
-int main() {
-    int arr1[] = { 1, 2, 3, 4 },
-        arr2[] = { 5, 6, 7, 8 },
-        arr4[] = { 5, 6, 7, 8, 9 },
-        arr5[] = { 1, 3, 5, 7, 8 },
-        arr6[] = { 2, 3, 4, 6, 10, 11 };
-
-    cout &lt;&lt; middle_of_two_sorted_arrays(arr1, 4, arr2, 4) &lt;&lt; endl;
-    cout &lt;&lt; middle_of_two_sorted_arrays(arr1, 4, arr4, 5) &lt;&lt; endl;
-    cout &lt;&lt; middle_of_two_sorted_arrays(arr5, 5, arr6, 6) &lt;&lt; endl;
-    cout &lt;&lt; middle_of_two_sorted_arrays(arr5, 5, arr4, 5) &lt;&lt; endl;
-    return 0;
-}
-</code></pre><h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/median-of-Two-Sorted-Array.png" alt="median-of-Two-Sorted-Array.png"></p>
-<hr>
-</blockquote>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Median-of-Two-Sorted-Arrays/" data-id="cj7e9svkk0000u0u6q0ym4i9m" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/10/Median-of-Two-Sorted-Arrays/" data-id="cj7erx2ww0003pku64ez6c94b" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分查找/">二分查找</a></li></ul>
 
     </footer>
   </div>
@@ -308,9 +245,9 @@ int main() {
 
 
   
-    <article id="post-n-Queens" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-N-Queens" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/08/n-Queens/" class="article-date">
+    <a href="/2017/09/08/N-Queens/" class="article-date">
   <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">2017-09-08</time>
 </a>
     
@@ -326,7 +263,7 @@ int main() {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/08/n-Queens/">n-Queens</a>
+      <a class="article-title" href="/2017/09/08/N-Queens/">N-Queens</a>
     </h1>
   
 
@@ -342,92 +279,18 @@ int main() {
 </li>
 </ul>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?<br>    <ul><br>        <li>每放置一个皇后就对以前放置过的皇后进行逐一检查</li><br>        <li>设置状态位，定义每一行，每一列，每一斜线上的格子是否可放置 <i class="fa fa-check" aria-hidden="true"></i><br>            <ul><br>                <li>如何设置以皇后为基点的斜线为不可放置状态<br>                    若两点(i1, j1)、(i2, j2)满足 i1 + j1 == i2 + j2，或 j1 - i1 == j2 - i2，则两点处于同一条斜线上（45度或135度）<br>                </li><br>            </ul><br>        </li><br>    </ul><br></div></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(n!)</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;stack&gt;
-#include &lt;functional&gt;
-using namespace std;
-
-int solveNQueens(int n) {
-    // 14ms
-    int count = 0;
-    bool *flag = new bool[5 * n - 2];
-    stack&lt;pair&lt;int, int&gt;&gt; q;
-    pair&lt;int, int&gt; cur;
-    auto isValid = [&amp;](int row, int col) -&gt; bool { return flag[col] &amp;&amp; flag[n + row + col] &amp;&amp; flag[4 * n - 2 + col - row]; };
-    auto occupy = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 0; };
-    auto clear = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 1; };
-
-    for (int i = 5 * n - 2 - 1;i--;) {
-        /*
-            flag[0] to flag[n - 1] to indicate if the column had a queen before.
-            flag[n] to flag[3 * n - 2] to indicate if the 45° diagonal had a queen before.
-            flag[3 * n - 1] to flag[5 * n - 3] to indicate if the 135° diagonal had a queen before.
-        */
-        flag[i] = true;
-    }
-    // 添加待处理点
-    for (int col = n; col--;) {
-        q.push(make_pair(0, col));
-    }
-    int nextRow = 1;
-    while (!q.empty()) {
-        cur = q.top();
-        nextRow = cur.first + 1;
-        if (cur.first == n - 1) {
-            count++;
-            q.pop();
-            continue;
-        } else if (isValid(cur.first, cur.second)) {
-            occupy(cur.first, cur.second);
-            for (int col = n; col--;) {
-                if (isValid(nextRow, col)) {
-                    q.push(make_pair(nextRow, col));
-                }
-            }
-        }
-        else {
-            clear(cur.first, cur.second);
-            q.pop();
-        }
-    }
-    delete[] flag;
-    return count;
-}
-
-int main() {
-    cout &lt;&lt; solveNQueens(8) &lt;&lt; endl;
-    return 0;
-}
-</code></pre><hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/n-Queens.png" alt="n-Queens.png"></p>
-</blockquote>
-<hr>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/09/08/N-Queens/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7e9svkx0005u0u6o3lb3zgi" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/08/N-Queens/" data-id="cj7erx2wp0001pku68zemn465" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
 
     </footer>
   </div>
@@ -470,72 +333,18 @@ int main() {
 </li>
 </ul>
 <hr>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    求一个数的n次幂，并不需要进行n次乘法，如<br>    <pre>    2的10次方，就是2的平方的5次方<br>        2的平方的5次方，就是2的平方的平方的2次方再乘以2<br>        以此类推<br>    </pre><br>    最后2的10次方只需进行4次乘法即可。<br></div></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(log(n))</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-class Solution {
-public:
-    double myPow(double x, int n) {
-        if (x == 0) {
-            return 0;
-        }
-        if (n == 0) {
-            return 1;
-        }
-        if (n &lt; 0) {
-            x = 1 / x;
-            n = -n;
-        }
-        double t = 1;
-        while (n != 1) {
-            if (n &amp; 1) {
-                t *= x;
-            }
-            x *= x;
-            n /= 2;
-        }
-        return t * x;
-    }
-};
-int main() {
-    cout &lt;&lt; Solution().myPow(2, 3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, -3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 10) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 100) &lt;&lt; endl;
-
-
-    return 0;
-}
-</code></pre><hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/pow-x-n.png" alt="pow-x-n.png"></p>
-<hr>
-</blockquote>
-
+        
+          <p class="article-more-link">
+            <a href="/2017/09/07/Pow-x-n/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7e9svkq0001u0u6i3s6bkmw" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7erx2x80007pku6r2q6l8m3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分治/">分治</a></li></ul>
 
     </footer>
   </div>
@@ -578,7 +387,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/hello/" data-id="cj7e9svkw0004u0u608cfg95a" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/hello/" data-id="cj7erx2xg000apku6pvfwqxxy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -589,6 +398,8 @@ int main() {
 
   
 
+
+</div>
 
         </section>
       </div>
@@ -612,6 +423,7 @@ int main() {
     
 
 <script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/show_hide.js"></script>
 
 
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
