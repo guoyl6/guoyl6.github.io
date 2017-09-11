@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/n-Queens.png">
-<meta property="og:updated_time" content="2017-09-11T13:53:40.662Z">
+<meta property="og:updated_time" content="2017-09-11T14:34:03.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="n-Queens">
 <meta name="twitter:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
@@ -244,54 +244,6 @@ public:
     }
 };
 
-
-int solveNQueens(int n) {
-    // 14ms
-    int count = 0;
-    bool *flag = new bool[5 * n - 2];
-    stack&lt;pair&lt;int, int&gt;&gt; q;
-    pair&lt;int, int&gt; cur;
-    auto isValid = [&amp;](int row, int col) -&gt; bool { return flag[col] &amp;&amp; flag[n + row + col] &amp;&amp; flag[4 * n - 2 + col - row]; };
-    auto occupy = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 0; };
-    auto clear = [&amp;](int row, int col) -&gt; void { flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = 1; };
-
-    for (int i = 5 * n - 2 - 1;i--;) {
-        /*
-            flag[0] to flag[n - 1] to indicate if the column had a queen before.
-            flag[n] to flag[3 * n - 2] to indicate if the 45° diagonal had a queen before.
-            flag[3 * n - 1] to flag[5 * n - 3] to indicate if the 135° diagonal had a queen before.
-        */
-        flag[i] = true;
-    }
-    // 添加待处理点
-    for (int col = n; col--;) {
-        q.push(make_pair(0, col));
-    }
-    int nextRow = 1;
-    while (!q.empty()) {
-        cur = q.top();
-        nextRow = cur.first + 1;
-        if (cur.first == n - 1) {
-            count++;
-            q.pop();
-            continue;
-        } else if (isValid(cur.first, cur.second)) {
-            occupy(cur.first, cur.second);
-            for (int col = n; col--;) {
-                if (isValid(nextRow, col)) {
-                    q.push(make_pair(nextRow, col));
-                }
-            }
-        }
-        else {
-            clear(cur.first, cur.second);
-            q.pop();
-        }
-    }
-    delete[] flag;
-    return count;
-}
-
 int main() {
     Solution nq;
     for (int i = 0; i &lt; 10; i++) {
@@ -308,7 +260,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7g9pmxv000omcu6pxvg4d1f" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7g9riy800084wu6e0l1nk0e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>
