@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/median-of-Two-Sorted-Array.png">
-<meta property="og:updated_time" content="2017-09-10T13:07:32.459Z">
+<meta property="og:updated_time" content="2017-09-11T13:55:18.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Find-Median">
 <meta name="twitter:description" content="问题来源 问题简介 给定两个有序数组a[m], b[n]，找出中位数要求时间复杂度为O(log(m+n))">
@@ -209,13 +209,21 @@ double middle_of_two_sorted_arrays(int *a, int l_a, int *b, int l_b) {
         swap(a, b);
         swap(l_a, l_b);
     }
-    if (l_b &lt;= 0) {
-        throw &quot;invalid length&quot;;
-    }
 
     int b_l = 0, b_r = l_a, half_len = (l_a + l_b) / 2;
     int i, j;
     double zws_l = 0, zws_r = 0;
+
+    if (l_a == 0 &amp;&amp; l_b == 0) {
+        throw &quot;invalid length&quot;;
+    } else if (l_a == 0) {
+        zws_l = b[l_b/2-1];
+        zws_r = b[l_b/2];
+        if (l_b &amp; 1) {
+            return zws_r;
+        }
+        return (zws_l + zws_r) / 2;
+    }
 
     /*
         从a中尝试挑选分割点，i的取值 [0, m]
@@ -241,25 +249,23 @@ double middle_of_two_sorted_arrays(int *a, int l_a, int *b, int l_b) {
             b 的两个部分 [0, j - 1], [j, length_of_b -1]
         */
 
-        if (i &gt; 0 &amp;&amp; i &lt; l_a) {
-            if (a[i] &lt; b[j - 1]) {
-                // 分割点过小使得a中本应在左半部分中的数被分到了右半部分
-                b_l = i + 1;
-                continue;
-            }
-            else if (a[i - 1] &gt; b[j]) {
-                // 分割点过大使得a中本应在右半部分中的数被分到了左半部分
-                b_r = i - 1;
-                continue;
-            }
+        if (i &lt; l_a &amp;&amp; a[i] &lt; b[j - 1]) {
+            // 分割点过小使得a中本应在左半部分中的数被分到了右半部分
+            b_l = i + 1;
+            continue;
+        }
+        if (i &gt; 0 &amp;&amp; a[i - 1] &gt; b[j]) {
+            // 分割点过大使得a中本应在右半部分中的数被分到了左半部分
+            b_r = i - 1;
+            continue;
         }
 
         if (i == 0) {
             zws_l = b[j - 1];
-            zws_r = j &lt; l_b ? b[j] : a[0];
+            zws_r = j &lt; l_b ? min(b[j], a[0]) : a[0];
         }
         else if (i == l_a) {
-            zws_l = j == 0 ? a[l_a-1] : b[j-1];
+            zws_l = j == 0 ? a[l_a-1] : max(a[l_a-1], b[j-1]);
             zws_r = b[j];
         }
         else {
@@ -298,7 +304,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Median-of-Two-Sorted-Arrays/" data-id="cj7f2bjdc0002e0u68z4eg8jt" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/10/Median-of-Two-Sorted-Arrays/" data-id="cj7g9pmwy0000mcu60c42tm5i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分查找/">二分查找</a></li></ul>

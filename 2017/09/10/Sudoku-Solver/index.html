@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/sudoku.png">
-<meta property="og:updated_time" content="2017-09-10T18:16:12.886Z">
+<meta property="og:updated_time" content="2017-09-11T11:02:25.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sudoku Solver">
 <meta name="twitter:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
@@ -194,7 +194,6 @@
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
 #include &lt;stack&gt;
-#include &lt;string&gt;
 using namespace std;
 
 struct Node {
@@ -229,21 +228,28 @@ public:
 
     bool solve() {
         stack&lt;Node&gt; q;
+        bool inited = false;
 
-        q.push(Node(0, 0, 0));
+        q.push(Node(0, -1, 0));
         while (!q.empty()) {
             Node &amp;cur = q.top();
             // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
             t_node = cur;
 
 
-            if (!cur.seted) {
-                set(cur);
+            if (inited) {
+                if (!cur.seted) {
+                    set(cur);
+                }
+                else {
+                    unset(cur);
+                    q.pop();
+                    continue;
+                }
             }
             else {
-                unset(cur);
                 q.pop();
-                continue;
+                inited = true;
             }
 
             if (!next_space(t_node)) {
@@ -321,9 +327,7 @@ private:
         block_occupied[cur.block][cur.num] = true;
         cur.seted = true;
 
-        if (cur.num) {
-            data_int[cur.row][cur.col] = cur.num;
-        }
+        data_int[cur.row][cur.col] = cur.num;
     }
 
     inline void unset(const Node &amp;cur) {
@@ -387,7 +391,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7f2bjdq0008e0u6k7adsc75" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7g9pmxa0004mcu6g0y7kn79" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>

@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/n-Queens.png">
-<meta property="og:updated_time" content="2017-09-10T13:39:02.383Z">
+<meta property="og:updated_time" content="2017-09-11T13:53:40.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="n-Queens">
 <meta name="twitter:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
@@ -184,7 +184,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">O(n!)</td>
+<td style="text-align:center">…</td>
 <td style="text-align:center">…</td>
 </tr>
 </tbody>
@@ -192,8 +192,58 @@
 <hr>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
 #include &lt;stack&gt;
+#include &lt;vector&gt;
 #include &lt;functional&gt;
 using namespace std;
+class Solution {
+private:
+    bool *flag;
+    int count;
+    void solve(int row, int col, int n) {
+        if (row == n - 1) {
+            count++;
+            return;
+        }
+        flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = false;
+        row++;
+        for (int i = 0; i &lt; n; i++) {
+            if (flag[i] &amp;&amp; flag[n + row + i] &amp;&amp; flag[4 * n - 2 + i - row]) {
+                solve(row, i, n);
+            }
+        }
+        row--;
+        flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = true;
+    }
+public:
+    Solution() { flag = nullptr; }
+    ~Solution() { delete[] flag; }
+    void init(int n) {
+        count = 0;
+        if (flag) {
+            delete[] flag;
+        }
+        flag = new bool[5 * n - 2];
+        for (int i = 5 * n - 2 - 1; i--;) {
+            /*
+            flag[0] to flag[n - 1] to indicate if the column had a queen before.
+            flag[n] to flag[3 * n - 2] to indicate if the 45° diagonal had a queen before.
+            flag[3 * n - 1] to flag[5 * n - 3] to indicate if the 135° diagonal had a queen before.
+            */
+            flag[i] = true;
+        }
+    }
+    int totalNQueens(int n) {
+        if (n &lt; 2) {
+            return n;
+        }
+        init(n);
+        for (int i = 0; i &lt; n; i++) {
+            solve(0, i, n);
+        }
+        return count;
+    }
+};
+
 
 int solveNQueens(int n) {
     // 14ms
@@ -243,7 +293,10 @@ int solveNQueens(int n) {
 }
 
 int main() {
-    cout &lt;&lt; solveNQueens(8) &lt;&lt; endl;
+    Solution nq;
+    for (int i = 0; i &lt; 10; i++) {
+        cout &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; nq.totalNQueens(i) &lt;&lt; endl;
+    }
     return 0;
 }
 </code></pre><hr>
@@ -255,7 +308,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7f2bjdu0009e0u6ndohws6i" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7g9pmxv000omcu6pxvg4d1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回溯/">回溯</a></li></ul>

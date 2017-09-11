@@ -14,7 +14,7 @@
 <meta property="og:description" content="问题来源 问题简介 实现求幂函数">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/pow-x-n.png">
-<meta property="og:updated_time" content="2017-09-10T13:07:20.176Z">
+<meta property="og:updated_time" content="2017-09-11T14:30:16.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pow(x,n)">
 <meta name="twitter:description" content="问题来源 问题简介 实现求幂函数">
@@ -196,11 +196,11 @@ using namespace std;
 class Solution {
 public:
     double myPow(double x, int n) {
-        if (x == 0) {
-            return 0;
-        }
         if (n == 0) {
             return 1;
+        }
+        if (x == 0 || x == 1) {
+            return x;
         }
         if (n &lt; 0) {
             x = 1 / x;
@@ -235,7 +235,7 @@ int main() {
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7f2bjd50000e0u6f39brb1n" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7g9pmx30001mcu6zrlxcyqu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分治/">分治</a></li></ul>
