@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>n-Queens | 学海无涯</title>
+  <title>E02 | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
-<meta name="keywords" content="c++,dfs">
+  <meta name="description" content="Problem 有数个城市，给定每两个城市间的距离，用一致代价搜索找出从起点到终点间的最短路径并输出。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="n-Queens">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/08/n-Queens/index.html">
+<meta property="og:title" content="E02">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/12/E02/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
+<meta property="og:description" content="Problem 有数个城市，给定每两个城市间的距离，用一致代价搜索找出从起点到终点间的最短路径并输出。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/n-Queens.png">
-<meta property="og:updated_time" content="2017-09-12T04:22:50.691Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/UniformCostProblem.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/UniformCost.png">
+<meta property="og:updated_time" content="2017-09-12T14:25:11.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="n-Queens">
-<meta name="twitter:description" content="问题来源 问题简介 在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/n-Queens.png">
+<meta name="twitter:title" content="E02">
+<meta name="twitter:description" content="Problem 有数个城市，给定每两个城市间的距离，用一致代价搜索找出从起点到终点间的最短路径并输出。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/UniformCostProblem.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -138,14 +138,14 @@
 </aside>
         
         <section id="main">
-        <article id="post-n-Queens" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-E02" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/08/n-Queens/" class="article-date">
-  <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">2017-09-08</time>
+    <a href="/2017/09/12/E02/" class="article-date">
+  <time datetime="2017-09-12T14:08:50.000Z" itemprop="datePublished">2017-09-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>
+    <a class="article-category-link" href="/categories/人工智能原理/">人工智能原理</a>
   </div>
 
   </div>
@@ -156,7 +156,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      n-Queens
+      E02
     </h1>
   
 
@@ -165,125 +165,140 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/n-queens-ii/description/" target="_blank" rel="external">问题来源</a></li>
-<li>问题简介<blockquote>
-<p>在一个n * n的格子里放置n个皇后，要求每任意两个皇后都不能处于同一行、同一列或者对角线上（45度或者135度）。返回总共有多少种排法。</p>
+<li>Problem<blockquote>
+<p>有数个城市，给定每两个城市间的距离，用一致代价搜索找出从起点到终点间的最短路径并输出。<img src="/img/UniformCostProblem.png" alt="UniformCostProblem"></p>
 </blockquote>
 </li>
 </ul>
-<hr>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    从第一行到最后一行，每次从第一个到最后一个，都尝试放置一个皇后，若符合要求，则计数加一。那么有如下问题：如何判断某个位置是否可以放置一个皇后?<br>    <ul><br>        <li>每放置一个皇后就对以前放置过的皇后进行逐一检查</li><br>        <li>设置状态位，定义每一行，每一列，每一斜线上的格子是否可放置 <i class="fa fa-check" aria-hidden="true"></i><br>            <ul><br>                <li>如何设置以皇后为基点的斜线为不可放置状态<br>                    若两点(i1, j1)、(i2, j2)满足 i1 + j1 == i2 + j2，或 j1 - i1 == j2 - i2，则两点处于同一条斜线上（45度或135度）<br>                </li><br>            </ul><br>        </li><br>    </ul><br></div></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">…</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;stack&gt;
+<ul>
+<li>Code</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
 #include &lt;vector&gt;
-#include &lt;functional&gt;
+#include &lt;unordered_map&gt;
+#include &lt;algorithm&gt;
 using namespace std;
-class Solution {
+
+struct path_node {
+    path_node(string f, string d, int cost) : from(f), dest(d), cost(cost) {}
+    string from;
+    string dest;
+    int cost;
+};
+
+struct search_node {
+    bool operator&lt;=(search_node o) {
+        return cost &lt;= o.cost;
+    }
+    string name;
+    int cost;
+    search_node *from;
+    static vector&lt;search_node*&gt; p;
+    static void deleteAll() {
+        for_each(p.begin(), p.end(), [](search_node *t) { delete t; });
+        p.clear();
+    }
+    static search_node* create(string name, int cost, search_node *from) {
+        search_node *t = new search_node(name, cost, from);
+        p.push_back(t);
+        return t;
+    }
 private:
-    bool *flag;
-    int count;
-    void solve(int row, int col, int n) {
-        if (row == n - 1) {
-            count++;
-            return;
+    search_node(string name, int cost, search_node *from) :name(name), cost(cost), from(from) {
+        if (from) { cost += from-&gt;cost; }
+    }
+};
+vector&lt;search_node*&gt; search_node::p;
+
+class UniformCost
+{
+public:
+    UniformCost() {
+    };
+    ~UniformCost() {
+    };
+    static vector&lt;string&gt; search(vector&lt;path_node&gt; t, string start, string target) {
+        vector&lt;string&gt; path;
+        vector&lt;search_node*&gt; q;
+        search_node *cur = nullptr, *next = nullptr;
+        unordered_map&lt;string, bool&gt; checked;
+        bool finded = false;
+        q.push_back(search_node::create(start, 0, nullptr));
+        while (!q.empty()) {
+            cur = q[0];
+            q.erase(q.begin());
+            checked[cur-&gt;name] = true;
+            if (cur-&gt;name == target) {
+                finded = true;
+                break;
+            }
+            for_each(t.begin(), t.end(), [&amp;](path_node n) {
+                next = nullptr;
+                if (n.from == cur-&gt;name) {
+                    next = search_node::create(n.dest, n.cost, cur);
+
+                }
+                else if (n.dest == cur-&gt;name) {
+                    next = search_node::create(n.from, n.cost, cur);
+                }
+                if (next &amp;&amp; !checked[next-&gt;name]) {
+                    q.push_back(next);
+                }
+            });
+            sort(q.begin(), q.end(), [](search_node *f, search_node *s) { return f-&gt;cost &lt; s-&gt;cost; });
         }
-        flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = false;
-        row++;
-        for (int i = 0; i &lt; n; i++) {
-            if (flag[i] &amp;&amp; flag[n + row + i] &amp;&amp; flag[4 * n - 2 + i - row]) {
-                solve(row, i, n);
+        if (finded) {
+            while (cur) {
+                path.insert(path.begin(), cur-&gt;name);
+                cur = cur-&gt;from;
             }
         }
-        row--;
-        flag[col] = flag[n + row + col] = flag[4 * n - 2 + col - row] = true;
-    }
-public:
-    Solution() { flag = nullptr; }
-    ~Solution() { delete[] flag; }
-    void init(int n) {
-        count = 0;
-        if (flag) {
-            delete[] flag;
-        }
-        flag = new bool[5 * n - 2];
-        for (int i = 5 * n - 2 - 1; i--;) {
-            /*
-            flag[0] to flag[n - 1] to indicate if the column had a queen before.
-            flag[n] to flag[3 * n - 2] to indicate if the 45° diagonal had a queen before.
-            flag[3 * n - 1] to flag[5 * n - 3] to indicate if the 135° diagonal had a queen before.
-            */
-            flag[i] = true;
-        }
-    }
-    int totalNQueens(int n) {
-        if (n &lt; 2) {
-            return n;
-        }
-        init(n);
-        for (int i = 0; i &lt; n; i++) {
-            solve(0, i, n);
-        }
-        return count;
+
+        search_node::deleteAll();
+        return path;
     }
 };
 
+
+
 int main() {
-    Solution nq;
-    for (int i = 0; i &lt; 10; i++) {
-        cout &lt;&lt; i &lt;&lt; &quot;: &quot; &lt;&lt; nq.totalNQueens(i) &lt;&lt; endl;
-    }
+    vector&lt;path_node&gt; v;
+    v.push_back(path_node(&quot;Arad&quot;, &quot;Sibiu&quot;, 140));
+    v.push_back(path_node(&quot;Sibiu&quot;, &quot;RiMnicu Vilcea&quot;, 80));
+    v.push_back(path_node(&quot;Sibiu&quot;, &quot;Fagaras&quot;, 99));
+    v.push_back(path_node(&quot;RiMnicu Vilcea&quot;, &quot;Craiova&quot;, 146));
+    v.push_back(path_node(&quot;RiMnicu Vilcea&quot;, &quot;Pitesti&quot;, 97));
+    v.push_back(path_node(&quot;Fagaras&quot;, &quot;Bucharest&quot;, 211));
+    v.push_back(path_node(&quot;Craiova&quot;, &quot;Pitesti&quot;, 138));
+    v.push_back(path_node(&quot;Pitesti&quot;, &quot;Bucharest&quot;, 101));
+
+    vector&lt;string&gt; rs = UniformCost::search(v, &quot;Arad&quot;, &quot;Bucharest&quot;);
+    for_each(rs.begin(), rs.end(), [](string name) {cout &lt;&lt; &quot;-&gt;&quot; &lt;&lt; name; });
+    cout &lt;&lt; endl;
     return 0;
 }
-</code></pre><hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/n-Queens.png" alt="n-Queens"></p>
-</blockquote>
-<hr>
+</code></pre><ul>
+<li>Result<br>  <img src="/img/UniformCost.png" alt="UniformCost"></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/08/n-Queens/" data-id="cj7hoxlak000kw0u6uaydd8h3" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/12/E02/" data-id="cj7hoxla50002w0u6seh1716n" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Find-Median
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/07/Pow-x-n/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/12/E01/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Pow(x,n)</div>
+      <div class="article-nav-title">E01</div>
     </a>
   
 </nav>

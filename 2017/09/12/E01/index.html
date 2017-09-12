@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: hello | 学海无涯</title>
+  <title>E01 | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学海无涯">
-<meta property="og:url" content="https://guoyl6.github.io/categories/hello/index.html">
+  <meta name="description" content="Problem">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="E01">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/12/E01/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="Problem">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/MazeProblem.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/Maze.png">
+<meta property="og:updated_time" content="2017-09-12T14:09:23.081Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学海无涯">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="E01">
+<meta name="twitter:description" content="Problem">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/MazeProblem.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -134,39 +139,178 @@
 </aside>
         
         <section id="main">
+        <article id="post-E01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/12/E01/" class="article-date">
+  <time datetime="2017-09-12T13:59:21.000Z" itemprop="datePublished">2017-09-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/人工智能原理/">人工智能原理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/07/hello/" class="archive-article-date">
-  <time datetime="2017-09-07T07:48:47.000Z" itemprop="datePublished">Sep 7</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/07/hello/">hello.md</a>
+    <h1 class="article-title" itemprop="name">
+      E01
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Problem<br>  <img src="/img/MazeProblem.png" alt="MazeProblem"></li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>Code</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;stack&gt;
+#include &lt;vector&gt;
+#include &lt;sstream&gt;
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+using namespace std;
+int row = 5, col = 5, length = col * row;
+
+class Node {
+public:
+    Node(int x = 0, int y = 0) : x(x), y(y), index(x*5+y) {}
+    int toIndex() {
+        return index;
+    }
+    int isValid() {
+        return 0 &lt;= x &amp;&amp; x &lt; row &amp;&amp; 0 &lt;= y &amp;&amp; y &lt; col;
+    }
+    Node move(int x_dis, int y_dis) {
+        return Node(x + x_dis, y + y_dis);
+    }
+    string toString() {
+        string t;
+        stringstream ss;
+        ss &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;,&quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
+        ss &gt;&gt; t;
+        return t;
+    }
+private:
+    int x;
+    int y;
+    int index;
+};
+
+void inputData(int *area) {
+    for (int i = 0; i &lt; length; i++) {
+        cin &gt;&gt; area[i];
+    }
+}
+
+void search(int *area, int length, vector&lt;Node&gt; &amp;rs) {
+    bool *moved = new bool [length];
+    int direction[][2] = {
+        {0, -1},
+        {0, 1},
+        {-1, 0},
+        {1, 0}
+    };
+    stack&lt;Node&gt; path;
+    Node next;
+
+    function&lt;bool(Node)&gt; find = [&amp;](Node cur) -&gt; bool {
+        moved[cur.toIndex()] = true;
+        path.push(cur);
+
+        if (cur.toIndex() == length - 1) {
+            return true;
+        }
+        for (int i = 0; i &lt; 4; i++) {
+            next = cur.move(direction[i][0], direction[i][1]);
+            if (next.isValid() &amp;&amp; area[next.toIndex()] != 1 &amp;&amp; !moved[next.toIndex()] &amp;&amp; find(next)) {
+                return true;
+            }
+        }
+        path.pop();
+        return false;
+    };
+
+    for (int i = 0; i &lt; length; i++) {
+        moved[i] = false;
+    }
+
+    rs.clear();
+    find(Node(0, 0));
+    if (path.size()) {
+        while (!path.empty()) {
+            rs.insert(rs.begin(), path.top());
+            path.pop();
+        }
+    }
+
+    delete[] moved;
+}
+
+void display(vector&lt;Node&gt; rs) {
+    if (rs.size()) {
+        for_each(rs.begin(), rs.end(), [](Node t)-&gt;void{ cout &lt;&lt; t.toString() &lt;&lt; endl; });
+    }
+    else {
+        cout &lt;&lt; &quot;No Result&quot; &lt;&lt; endl;
+    }
+
+}
+
+int main() {
+    int area[25];
+    vector&lt;Node&gt; rs;
+    inputData(area);
+    search(area, 25, rs);
+    display(rs);
+    return 0;
+}
+</code></pre><ul>
+<li>Result<br>  <img src="/img/Maze.png" alt="MazeResult"></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/12/E01/" data-id="cj7hoxl9p0000w0u6elc44dy2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/12/E02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          E02
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/12/search/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">search</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
         </section>
