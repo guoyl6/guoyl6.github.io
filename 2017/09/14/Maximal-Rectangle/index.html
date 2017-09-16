@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Sudoku Solver | 学海无涯</title>
+  <title>Miximal Rectangle | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
-<meta name="keywords" content="c++,dfs">
+  <meta name="description" content="问题来源 问题简介 给定一个矩阵，其中有 0 和 1 两种数据，要求输出包围最多个 1 的矩阵的面积">
+<meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sudoku Solver">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/index.html">
+<meta property="og:title" content="Miximal Rectangle">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/14/Maximal-Rectangle/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
+<meta property="og:description" content="问题来源 问题简介 给定一个矩阵，其中有 0 和 1 两种数据，要求输出包围最多个 1 的矩阵的面积">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/sudoku.png">
-<meta property="og:updated_time" content="2017-09-13T11:52:08.878Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/Maximal-Rectangle.png">
+<meta property="og:updated_time" content="2017-09-14T14:54:43.036Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sudoku Solver">
-<meta name="twitter:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/sudoku.png">
+<meta name="twitter:title" content="Miximal Rectangle">
+<meta name="twitter:description" content="问题来源 问题简介 给定一个矩阵，其中有 0 和 1 两种数据，要求输出包围最多个 1 的矩阵的面积">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/Maximal-Rectangle.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -141,10 +141,10 @@
 </aside>
         
         <section id="main">
-        <article id="post-Sudoku-Solver" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Maximal-Rectangle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/10/Sudoku-Solver/" class="article-date">
-  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">2017-09-10</time>
+    <a href="/2017/09/14/Maximal-Rectangle/" class="article-date">
+  <time datetime="2017-09-14T14:01:46.000Z" itemprop="datePublished">2017-09-14</time>
 </a>
     
   <div class="article-category">
@@ -159,7 +159,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Sudoku Solver
+      Miximal Rectangle
     </h1>
   
 
@@ -168,16 +168,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/sudoku-solver/description/" title="解数独" target="_blank" rel="external">问题来源</a></li>
+<li><a href="https://leetcode.com/problems/maximal-rectangle/description/" title="寻找最大矩阵" target="_blank" rel="external">问题来源</a></li>
 <li>问题简介<blockquote>
-<p>给定一个未填满的数独，要求你把它填满。</p>
+<p>给定一个矩阵，其中有 0 和 1 两种数据，要求输出包围最多个 1 的矩阵的面积</p>
 </blockquote>
 </li>
 </ul>
 <hr>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    采用回溯算法，在处理一个空白格子时，对 1 - 9 进行尝试，若冲突了则回退到上一步，否则尝试下一个格子。<br></div>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>遍历矩阵，若遇到 1，则<br><div class="info"><br>    <ol><br>        <li>先从某个 1 处沿着横轴寻找最大的长度M</li><br>        <li>再从 M-&gt;1 依次缩小长度度，沿着纵轴寻找最大宽度</li><br>    </ol><br></div>
 
+<p>只要对每个1都进行相同操作，即可找到最大面积<br></p></div><p></p>
 <hr>
 <table>
 <thead>
@@ -194,210 +195,147 @@
 </tbody>
 </table>
 <hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
-#include &lt;stack&gt;
 using namespace std;
-
-struct Node {
-    Node() { set(0, 0, 0, false); };
-    Node(int row, int col, int num) { set(row, col, num, false); };
-    void set(int r, int c, int n, bool s) {
-        col = c;
-        row = r;
-        num = n;
-        block = row / 3 * 3 + col / 3;
-        seted = s;
-    }
-    bool seted;
-    int col,
-        row,
-        block,
-        num;
-};
 
 class Solution {
 public:
-    Solution(char data[9][10]) {
-        init(data);
-    }
-
-    ~Solution() {
-        for (int i = 0; i &lt; 9; i++) {
-            delete[] data[i];
+    int maximalRectangle(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) {
+        size.second = matrix.size();
+        if (size.second) {
+            size.first = matrix[0].size();
         }
-        delete[] data;
-    }
-
-    bool solve() {
-        stack&lt;Node&gt; q;
-        bool inited = false;
-
-        q.push(Node(0, -1, 0));
-        while (!q.empty()) {
-            Node &amp;cur = q.top();
-            // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
-            t_node = cur;
-
-
-            if (inited) {
-                if (!cur.seted) {
-                    set(cur);
-                }
-                else {
-                    unset(cur);
-                    q.pop();
+        else {
+            size.first = 0;
+        }
+        int maximun = 0;
+        for (int row = 0; row &lt; size.second; row++) {
+            for (int col = 0; col &lt; size.first; col++) {
+                if (matrix[row][col] == &apos;0&apos;) {
                     continue;
                 }
-            }
-            else {
-                q.pop();
-                inited = true;
-            }
-
-            if (!next_space(t_node)) {
-                for (int i = 0; i &lt; 9; i++) {
-                    for (int j = 0; j &lt; 9; j++) {
-                        data[i][j] = data_int[i][j] + &apos;0&apos;;
-                    }
-                }
-                return true;
-            }
-
-            for (int i = 1; i &lt;= 9; i++) {
-                t_node.num = i;
-                if (isNotOccupied(t_node)) {
-                    q.push(t_node);
+                int rw = getMaxWidth(matrix, col, row);
+                int rh = 0;
+                for (int k = rw - 1; k &gt;= 0; k--) {
+                    rh = rh + nextLine(matrix, col, col + k, rh + row);
+                    maximun = max(maximun, (k + 1) * rh);
                 }
             }
         }
-        return false;
+        return maximun;
     }
 
-    void display() {
-        for_each(data, data + 9, [&amp;](char *t) {
-            for (int i = 0; i &lt; 9; i++) {
-                cout &lt;&lt; t[i] &lt;&lt; &quot; &quot;;
+    int getMaxWidth(vector&lt;vector&lt;char&gt;&gt;&amp; matrix, int start_col, int start_row) {
+        if (start_col &gt;= size.first || start_row &gt;= size.second) {
+            return 0;
+        }
+        for (int col = start_col; col &lt; size.first; col++) {
+            if (matrix[start_row][col] == &apos;0&apos;) {
+                return col - start_col;
             }
-            cout &lt;&lt; endl;
-        });
+        }
+        return size.first - start_col;
+    }
+
+    int nextLine(vector&lt;vector&lt;char&gt;&gt;&amp; matrix, int start_col, int end_col, int start_row) {
+        if (start_row &gt;= size.second) {
+            return 0;
+        }
+        for (int i = start_col; i &lt;= end_col; i++) {
+            if (matrix[start_row][i] == &apos;0&apos;) {
+                return 0;
+            }
+        }
+        return nextLine(matrix, start_col, end_col, start_row + 1)  + 1;
     }
 
 private:
-    char **data;
-    bool row_occupied[9][10],
-        col_occupied[9][10],
-        block_occupied[9][10];
-
-    uint8_t data_int[9][10];
-    Node t_node;
-
-    void init(char t[9][10]) {
-        data = new char*[9];
-        for (int i = 0; i &lt; 9; i++) {
-            data[i] = new char[10];
-            for (int j = 0; j &lt; 10; j++) {
-                data[i][j] = t[i][j];
-            }
-        }
-        for (int i = 0; i &lt; 9; i++) {
-            for (int j = 0; j &lt; 9; j++) {
-
-                for (int num = 0; num &lt; 10; num++) {
-                    t_node.set(i, j, num, false);
-                    unset(t_node);
-                }
-
-            }
-        }
-
-        for (int row = 0; row &lt; 9; row++) {
-            for (int col = 0; col &lt; 9; col++) {
-                if (data[row][col] == &apos;.&apos;) {
-                    continue;
-                }
-                else {
-                    t_node.set(row, col, data[row][col] - &apos;0&apos;, false);
-                    set(t_node);
-                }
-            }
-        }
-    }
-
-    inline void set(Node &amp;cur) {
-        row_occupied[cur.row][cur.num] = true;
-        col_occupied[cur.col][cur.num] = true;
-        block_occupied[cur.block][cur.num] = true;
-        cur.seted = true;
-
-        data_int[cur.row][cur.col] = cur.num;
-    }
-
-    inline void unset(const Node &amp;cur) {
-        row_occupied[cur.row][cur.num] = false;
-        col_occupied[cur.col][cur.num] = false;
-        block_occupied[cur.block][cur.num] = false;
-
-        data_int[cur.row][cur.col] = &apos;.&apos;;
-    }
-
-    inline bool isNotOccupied(const Node &amp;cur) {
-        return (!row_occupied[cur.row][cur.num] &amp;&amp; !col_occupied[cur.col][cur.num] &amp;&amp; !block_occupied[cur.block][cur.num]);
-    }
-
-    inline bool next_space(Node &amp;cur) {
-        while (cur.row != 8 || cur.col != 8) {
-            ++cur.col;
-            if (cur.col == 9) {
-                ++cur.row;
-                cur.col = 0;
-            }
-            if (data[cur.row][cur.col] == &apos;.&apos;) {
-                cur.block = cur.row / 3 * 3 + cur.col / 3;
-                return true;
-            }
-        }
-        return false;
-    }
-
+    pair&lt;int, int&gt; size;
 };
 
 int main() {
-    char data[][10] = {
-        &quot;53..7....&quot;,
-        &quot;6..195...&quot;,
-        &quot;.98....6.&quot;,
-        &quot;8...6...3&quot;,
-        &quot;4..8.3..1&quot;,
-        &quot;7...2...6&quot;,
-        &quot;.6....28.&quot;,
-        &quot;...419..5&quot;,
-        &quot;....8..79&quot;
+    vector&lt;vector&lt;char&gt;&gt; matrix;
+    char data[][5] = {
+        { &apos;1&apos;, &apos;0&apos;, &apos;1&apos;, &apos;0&apos;, &apos;0&apos; },
+        { &apos;1&apos;, &apos;0&apos;, &apos;1&apos;, &apos;1&apos;, &apos;1&apos; },
+        { &apos;1&apos;, &apos;1&apos;, &apos;1&apos;, &apos;1&apos;, &apos;1&apos; },
+        { &apos;1&apos;, &apos;0&apos;, &apos;0&apos;, &apos;1&apos;, &apos;0&apos; },
     };
-    Solution t(data);
-    bool rs = t.solve();
-    if (rs) {
-        t.display();
+    for (int i = 0; i &lt; 4; i++) {
+        matrix.push_back(vector&lt;char&gt;(data[i], data[i] + 5));
     }
-    else {
-        cout &lt;&lt; &quot;无解&quot; &lt;&lt; endl;
-    }
-
+    cout &lt;&lt; Solution().maximalRectangle(matrix) &lt;&lt; endl;
     return 0;
 }
 </code></pre><hr>
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/sudoku.png" alt="Sudoku Solver" title="数独"></p>
+<p><img src="/img/Maximal-Rectangle.png" alt="Miximal Rectangle" title="result"></p>
 </blockquote>
 <hr>
+<h2 id="贴一下别人的代码"><a href="#贴一下别人的代码" class="headerlink" title="贴一下别人的代码"></a>贴一下别人的代码</h2><p><em>不是很懂</em></p>
+<div class="info"><br>    大概思路就是DP Solution问题。<br>    DP：考虑且仅仅考虑由前一阶段状态转移到当前状态后，递推并选取出当前状态的最优解，具有无后效性和最优子结构的基本特征，其中所谓的无后效性是指：“下一时刻的状态只与当前状态有关，而和当前状态之前的状态无关，当前的状态是对以往决策的总结”。因此DP是由前一阶段的一系列阶段转移并选取最优而来，即抵达当前状态路径不唯一，仅是最终最优结果唯一。<br></div>
 
+
+<pre><code>class Solution {
+public:
+    int maximalRectangle(vector&lt;vector&lt;char&gt; &gt;&amp; matrix) {
+        if (matrix.empty()) return 0;
+        int n = matrix[0].size(), m = matrix.size();
+        int ret = 0;
+
+        int left[n], right[n], height[n];
+        fill(left, left+n, 0);
+        fill(right, right+n, n);
+        fill(height, height+n, 0);
+
+        for (int i = 0; i &lt; m; i++) {
+            int cur_left = 0;
+            for (int j = 0; j &lt; n; j++) {
+                if (matrix[i][j] == &apos;1&apos;) {
+                    left[j] = max(left[j], cur_left);
+                } else {
+                    left[j] = 0;
+                    cur_left = j+1;
+                }
+            }
+
+            int cur_right = n;
+            for (int j = n-1; j &gt;= 0; j--) {
+                if (matrix[i][j] == &apos;1&apos;) {
+                    right[j] = min(right[j], cur_right);
+                } else {
+                    right[j] = n;
+                    cur_right = j;
+                }
+            }
+
+            for (int j = 0; j &lt; n; j++) {
+                if (matrix[i][j] == &apos;1&apos;) {
+                    height[j] += 1;
+                } else {
+                    height[j] = 0;
+                }
+            }
+
+            for (int j = 0; j &lt; n; j++) {
+                if ((right[j] - left[j]) * height[j] &gt; ret)
+                    ret = (right[j] - left[j]) * height[j];
+            }
+        }
+
+        return ret;
+    }
+};
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7mzzyvr000p38u68u84wh2j" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/14/Maximal-Rectangle/" data-id="cj7mzzyvr000r38u6895at7j0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
 
     </footer>
   </div>
@@ -405,19 +343,10 @@ int main() {
     
 <nav id="article-nav">
   
-    <a href="/2017/09/12/search/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          search
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/13/Find-Median-from-Data-Stream/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Find-Median</div>
+      <div class="article-nav-title">Find Median from Data Stream</div>
     </a>
   
 </nav>

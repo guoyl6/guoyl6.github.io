@@ -91,3 +91,8 @@
 pre {
 	white-space: pre-wrap;
 }
+
+li.tag-list-item {
+    display: inline-block;
+    padding: 0 10px;
+}

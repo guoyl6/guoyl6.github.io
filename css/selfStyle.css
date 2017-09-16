@@ -1,6 +1,7 @@
 .info {
   position: relative;
   color: #555;
+  margin: 8px;
   margin-left: 20px;
   line-height: 1.8;
   background-color: rgb(238, 227, 194);
@@ -28,10 +29,15 @@
 .info br:first-child,
 .info br:last-child,
 .info ul>br,
-.info ul+br {
+.info ul+br,
+.info dl>br,
+.info dl+br,
+.info ol>br,
+.info ol+br {
 	display: none;
 }
 
+.info p,
 .info li {
 	margin: 5px;
 }
