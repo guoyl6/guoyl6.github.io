@@ -37,6 +37,10 @@
 	display: none;
 }
 
+dl>dd {
+  padding-left: 8px;
+}
+
 .info p,
 .info li {
 	margin: 5px;
