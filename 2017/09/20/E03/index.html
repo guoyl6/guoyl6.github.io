@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Pow(x,n) | 学海无涯</title>
+  <title>E03 | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 实现求幂函数">
+  <meta name="description" content="Problem 水罐问题，给你两个指定体积的水罐，要求得到目标体积的水量。">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pow(x,n)">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/07/Pow-x-n/index.html">
+<meta property="og:title" content="E03">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/20/E03/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 实现求幂函数">
+<meta property="og:description" content="Problem 水罐问题，给你两个指定体积的水罐，要求得到目标体积的水量。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/pow-x-n.png">
-<meta property="og:updated_time" content="2017-09-13T11:51:57.088Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/WaterJug.png">
+<meta property="og:updated_time" content="2017-09-20T11:47:51.648Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pow(x,n)">
-<meta name="twitter:description" content="问题来源 问题简介 实现求幂函数">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/pow-x-n.png">
+<meta name="twitter:title" content="E03">
+<meta name="twitter:description" content="Problem 水罐问题，给你两个指定体积的水罐，要求得到目标体积的水量。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/WaterJug.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -141,14 +141,14 @@
 </aside>
         
         <section id="main">
-        <article id="post-Pow-x-n" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-E03" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/07/Pow-x-n/" class="article-date">
-  <time datetime="2017-09-07T15:56:53.000Z" itemprop="datePublished">2017-09-07</time>
+    <a href="/2017/09/20/E03/" class="article-date">
+  <time datetime="2017-09-20T11:27:59.000Z" itemprop="datePublished">2017-09-20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/未分类/">未分类</a>
+    <a class="article-category-link" href="/categories/人工智能原理/">人工智能原理</a>
   </div>
 
   </div>
@@ -159,14 +159,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Pow(x,n)
+      E03
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/07/Pow-x-n/" data-id="cj7t5c8bg000c64u6gmdjshkf" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/20/E03/" data-id="cj7t5c8b9000764u6u6hf6je7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -175,72 +175,161 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/powx-n/description/" target="_blank" rel="external">问题来源</a></li>
-<li>问题简介<blockquote>
-<p>实现求幂函数</p>
+<li>Problem<blockquote>
+<p>水罐问题，给你两个指定体积的水罐，要求得到目标体积的水量。</p>
 </blockquote>
 </li>
 </ul>
-<hr>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p><div class="info"><br>    求一个数的n次幂，并不需要进行n次乘法，如<br>    <pre>    2的10次方，就是2的平方的5次方<br>        2的平方的5次方，就是2的平方的平方的2次方再乘以2<br>        以此类推<br>    </pre><br>    最后2的10次方只需进行4次乘法即可。<br></div></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">时间复杂度</th>
-<th style="text-align:center">空间复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">O(log(n))</td>
-<td style="text-align:center">…</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
+<ul>
+<li>Code</li>
+</ul>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+#include &lt;sstream&gt;
 using namespace std;
-
-class Solution {
+class Node {
 public:
-    double myPow(double x, int n) {
-        if (n == 0) {
-            return 1;
-        }
-        if (x == 0 || x == 1) {
-            return x;
-        }
-        if (n &lt; 0) {
-            x = 1 / x;
-            n = -n;
-        }
-        double t = 1;
-        while (n != 1) {
-            if (n &amp; 1) {
-                t *= x;
-            }
-            x *= x;
-            n /= 2;
-        }
-        return t * x;
+    Node(int i = 0, int j = 0) {
+        set(i, j);
+        s = toString();
+        fn = -1;
+        step = 0;
+    }
+    void set(int i, int j) {
+        first = i;
+        second = j;
+    }
+    void after(Node &amp;from) {
+        s = from.s + &quot;-&gt;&quot; + toString();
+        step = from.step + 1;
+    }
+    void freshFn(int &amp;final) {
+        fn = step + min(abs(final - first), abs(final - second));
+    }
+    int first;
+    int second;
+    string s;
+    int fn;
+    int step;
+
+    string toString() {
+        std::stringstream out1;
+        out1 &lt;&lt; &quot;(&quot; &lt;&lt; first &lt;&lt; &quot;,&quot; &lt;&lt; second &lt;&lt; &quot;)&quot;;
+        return out1.str();
     }
 };
-int main() {
-    cout &lt;&lt; Solution().myPow(2, 3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, -3) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 10) &lt;&lt; endl;
-    cout &lt;&lt; Solution().myPow(2, 100) &lt;&lt; endl;
 
+string Asearch(Node ini, Node cap, int final, int &amp;counter) {
+    vector&lt;Node&gt; q;
+    Node cur, temp;
+    string str = &quot;not found&quot;;
+    unordered_map&lt;string, int&gt; finded;
+    auto add = [&amp;](Node &amp;t) {
+        string s = t.toString();
+        if (finded[s] &amp;&amp; finded[s] &lt;= t.step) {
+            return;
+        }
+        t.after(cur);
+        temp.freshFn(final);
+        q.push_back(t);
+    };
+
+    q.push_back(ini);
+
+    while (q.size()) {
+        cur = q[0];
+        q.erase(q.begin());
+        finded[cur.toString()] = cur.step;
+        counter++;
+
+        if (cur.first == final) {
+            str = cur.s;
+            break;
+        }
+
+        temp = cur;
+
+        // fill first jug;
+        if (cur.first &lt; cap.first) {
+            temp.set(cap.first, cur.second);
+            add(temp);
+        }
+
+        if (cur.second &lt; cap.second) {
+            temp.set(cur.first, cap.second);
+            add(temp);
+        }
+
+        //Empty 1st Jug
+        if (cur.first &gt; 0) {
+            temp.set(0, cur.second);
+            add(temp);
+        }
+        //Empty 2nd Jug
+        if (cur.second &gt; 0) {
+            temp.set(cur.first, 0);
+            add(temp);
+        }
+        // Pour from 1st jug to 2nd jug
+        if (cur.first &amp;&amp; cur.second &lt; cap.second) {
+            int dis = min(cur.first, cap.second - cur.second);
+            temp.set(cur.first - dis, cur.second + dis);
+            if (dis) {
+                add(temp);
+            }
+
+        }
+        // Pour from 2nd jug to 1st jug
+        if (cur.second &amp;&amp; cur.first &lt; cap.first) {
+            int dis = min(cur.second, cap.first - cur.first);
+            temp.set(cur.first + dis, cur.second - dis);
+            if (dis) {
+                add(temp);
+            }
+        }
+
+        sort(q.begin(), q.end(), [&amp;](const Node&amp; a, const Node&amp; b) {
+            return a.fn &lt; b.fn;
+        });
+
+    }
+
+    return str;
+}
+
+
+int main()
+{
+
+    //Using BSF to find the answer
+    while (true) {
+        Node cap, ini;
+        int final;
+
+        //Input initial values
+        cout &lt;&lt; &quot;Enter the capacity of 2 jugs\n&quot;;
+        cin &gt;&gt; cap.first &gt;&gt; cap.second;
+        //input final values
+        cout &lt;&lt; &quot;Enter the required jug config\n&quot;;
+        cin &gt;&gt; final;
+
+        int counter = 0;
+        cout &lt;&lt; &quot;result: &quot; &lt;&lt; Asearch(ini, cap, final, counter) &lt;&lt; endl;
+        cout &lt;&lt; &quot;check times: &quot; &lt;&lt; counter &lt;&lt; endl &lt;&lt; endl;
+    }
 
     return 0;
 }
-</code></pre><hr>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/pow-x-n.png" alt="Pow(x,n)"></p>
-<hr>
+</code></pre><ul>
+<li>Result<blockquote>
+<p><img src="/img/WaterJug.png" alt="E03" title="result"></p>
 </blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -250,19 +339,19 @@ int main() {
     
 <nav id="article-nav">
   
-    <a href="/2017/09/08/n-Queens/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/20/Maximum-Subarray/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          n-Queens
+          Maximum Subarray
         
       </div>
     </a>
   
   
-    <a href="/2017/09/07/hello/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/17/Split-Array-into-Consecutive-Subsequences/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">hello.md</div>
+      <div class="article-nav-title">Split Array</div>
     </a>
   
 </nav>

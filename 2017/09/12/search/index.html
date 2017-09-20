@@ -5,18 +5,18 @@
   
   <title>search | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索">
+  <meta name="description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索、A*算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="search">
 <meta property="og:url" content="https://guoyl6.github.io/2017/09/12/search/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索">
+<meta property="og:description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索、A*算法">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/summary-of-uniformed-search.png">
-<meta property="og:updated_time" content="2017-09-12T14:05:11.759Z">
+<meta property="og:updated_time" content="2017-09-20T11:39:40.493Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="search">
-<meta name="twitter:description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索">
+<meta name="twitter:description" content="一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索、A*算法">
 <meta name="twitter:image" content="https://guoyl6.github.io/img/summary-of-uniformed-search.png">
   <!--  -->
   
@@ -87,7 +87,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selection问题/">Selection问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selection问题/">Selection问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dp/">dp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li></ul>
     </div>
     <pre>
 
@@ -113,6 +113,14 @@
       <ul>
         
           <li>
+            <a href="/2017/09/20/Maximum-Subarray/">Maximum Subarray</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/20/E03/">E03</a>
+          </li>
+        
+          <li>
             <a href="/2017/09/17/Split-Array-into-Consecutive-Subsequences/">Split Array</a>
           </li>
         
@@ -122,14 +130,6 @@
         
           <li>
             <a href="/2017/09/13/Find-Median-from-Data-Stream/">Find Median from Data Stream</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/12/E02/">E02</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/12/E01/">E01</a>
           </li>
         
       </ul>
@@ -164,10 +164,15 @@
 
       </header>
     
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/12/search/" data-id="cj7t5c8by000t64u64lqpc43e" class="article-share-link">Share</a>
+      
+      
+    </footer>
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索<br><img src="/img/summary-of-uniformed-search.png" alt="summary-of-uniformed-search"></p>
+<p>一些搜索算法，包括广搜、深搜、一致代价搜索、深度受限搜索、A*算法<br><img src="/img/summary-of-uniformed-search.png" alt="summary-of-uniformed-search"></p>
 </blockquote>
 <a id="more"></a>
 <ul>
@@ -176,6 +181,7 @@
 <li><a href="#DFS">DFS</a></li>
 <li><a href="#DLS">DLS</a></li>
 <li><a href="#Iterative-Deepening-search">Iterative-Deepening search</a></li>
+<li><a href="#A-Start-Algorithm">A*算法</a></li>
 </ul>
 <h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><ul>
 <li>算法思路</li>
@@ -205,7 +211,7 @@
     Curr = select state from Frontier
     If (Goal?(Curr)) return Curr.
     Frontier’ = (Frontier – {Curr}) U Successors(Curr)
-    Sort(Frontier’)
+    SortByCost(Frontier’)
     return TreeSearch(Frontier’, Successors, Goal?)
 </code></pre><hr>
 <h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><ul>
@@ -269,14 +275,22 @@ IterativeDeepeningSearch(Frontier, Successors, Goal?)
         Else If (IsCutOff) continue
         Else return failure
 </code></pre><hr>
+<h2 id="A-Start-Algorithm"><a href="#A-Start-Algorithm" class="headerlink" title="A-Start Algorithm"></a>A-Start Algorithm</h2><div class="info"><br>    A*算法跟一致代价搜索原理类似，只是在一致低价搜索中我们依据代价来对队列进行排序，而A*算法中我们使用函数 f(n) = g(n) + h(n)作为排序依据，其中 g(n) 为当前节点的代价，h(n) 为我们给出的函数，其值为当前节点到达目标节点的估算值。<br>    <dl><br>        <dt>如何保证搜索结果最优？</dt><br>        <dd>令 m(n) 表示从当前节点到目标节点的最小代价，只要满足h(n) &lt;= m(n) 即可</dd><br>    </dl><br>    A*算法的难点在于如何定义评估函数。<br></div>
 
+<ul>
+<li>伪代码</li>
+</ul>
+<pre><code>TreeSearch(Frontier, Sucessors, Goal? )
+    If Frontier is empty return failure
+    Curr = select state from Frontier
+    If (Goal?(Curr)) return Curr.
+    Frontier’ = (Frontier – {Curr}) U Successors(Curr)
+    SortByFn(Frontier’)
+    return TreeSearch(Frontier’, Successors, Goal?)
+</code></pre>
       
     </div>
-    <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/12/search/" data-id="cj7o5ts6p000pjgu6uzbnago4" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    
   </div>
   
     
