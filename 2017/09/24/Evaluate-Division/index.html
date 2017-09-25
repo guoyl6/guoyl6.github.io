@@ -3,22 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Sudoku Solver | 学海无涯</title>
+  <title>Evaluate Division | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
+  <meta name="description" content="问题来源 问题简介 给出一系列式子 a / b = k（k为非零小数），要求算出指定的算式，如:给出 a / b = 2.0, b / c = 3.0；则求 a / c。结果: 6.0若求不出，则为 -1。">
 <meta name="keywords" content="c++,dfs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sudoku Solver">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/index.html">
+<meta property="og:title" content="Evaluate Division">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/24/Evaluate-Division/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
+<meta property="og:description" content="问题来源 问题简介 给出一系列式子 a / b = k（k为非零小数），要求算出指定的算式，如:给出 a / b = 2.0, b / c = 3.0；则求 a / c。结果: 6.0若求不出，则为 -1。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/sudoku.png">
-<meta property="og:updated_time" content="2017-09-13T11:52:08.878Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/Evaluate-Division.png">
+<meta property="og:updated_time" content="2017-09-24T07:20:31.971Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sudoku Solver">
-<meta name="twitter:description" content="问题来源 问题简介 给定一个未填满的数独，要求你把它填满。">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/sudoku.png">
+<meta name="twitter:title" content="Evaluate Division">
+<meta name="twitter:description" content="问题来源 问题简介 给出一系列式子 a / b = k（k为非零小数），要求算出指定的算式，如:给出 a / b = 2.0, b / c = 3.0；则求 a / c。结果: 6.0若求不出，则为 -1。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/Evaluate-Division.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -141,14 +141,14 @@
 </aside>
         
         <section id="main">
-        <article id="post-Sudoku-Solver" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Evaluate-Division" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/10/Sudoku-Solver/" class="article-date">
-  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">2017-09-10</time>
+    <a href="/2017/09/24/Evaluate-Division/" class="article-date">
+  <time datetime="2017-09-24T05:59:25.000Z" itemprop="datePublished">2017-09-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/未分类/">未分类</a>
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/图的分解/">图的分解</a>
   </div>
 
   </div>
@@ -159,14 +159,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Sudoku Solver
+      Evaluate Division
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/10/Sudoku-Solver/" data-id="cj7zt930c000u20u6p7y1ywc4" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/09/24/Evaluate-Division/" data-id="cj7zt92zu000e20u66ij82rlc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li></ul>
@@ -175,15 +175,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/sudoku-solver/description/" title="解数独" target="_blank" rel="external">问题来源</a></li>
+<li><a href="https://leetcode.com/problems/evaluate-division/description/" title="Evaluate Division" target="_blank" rel="external">问题来源</a></li>
 <li>问题简介<blockquote>
-<p>给定一个未填满的数独，要求你把它填满。</p>
+<p>给出一系列式子 a / b = k（k为非零小数），要求算出指定的算式，如:<br>给出 a / b = 2.0, b / c = 3.0；<br>则求 a / c。<br>结果: 6.0<br>若求不出，则为 -1。</p>
 </blockquote>
 </li>
 </ul>
 <hr>
 <a id="more"></a>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    采用回溯算法，在处理一个空白格子时，对 1 - 9 进行尝试，若冲突了则回退到上一步，否则尝试下一个格子。<br></div>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    若有 a / b, b / c<br>    则可求 a / c = a / b * b / c<br>    同理，对于 a / b<br>    若有 a / d, d / b<br>    则可求 a / b<br>    以此类推，直到无法继续拓展。<br>    这就有点像分治了。问题是在求a / c 时，我们如何确定这个b的值？<br>    如果将 a / b 看成 a-&gt;b，那么，a / b, b / c就可以看成 a -&gt; b -&gt; c<br>    则：<br>        <strong>我们从a开始遍历，看是否存在一条路径使得a和c是连通的。</strong><br><br>    这里需要注意的是，若我们有 a / b的值，那么我们也就同时拥有 b / a 的值了。<br>    也就是说这道题涉及到的是无向图的遍历了。<br><br></div>
 
 <hr>
 <table>
@@ -201,200 +201,61 @@
 </tbody>
 </table>
 <hr>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-using namespace std;
-
-struct Node {
-    Node() { set(0, 0, 0, false); };
-    Node(int row, int col, int num) { set(row, col, num, false); };
-    void set(int r, int c, int n, bool s) {
-        col = c;
-        row = r;
-        num = n;
-        block = row / 3 * 3 + col / 3;
-        seted = s;
-    }
-    bool seted;
-    int col,
-        row,
-        block,
-        num;
-};
-
-class Solution {
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
 public:
-    Solution(char data[9][10]) {
-        init(data);
-    }
-
-    ~Solution() {
-        for (int i = 0; i &lt; 9; i++) {
-            delete[] data[i];
+    vector&lt;double&gt; calcEquation(vector&lt;pair&lt;string, string&gt;&gt; equations, vector&lt;double&gt;&amp; values, vector&lt;pair&lt;string, string&gt;&gt; queries) {
+        unordered_map&lt;string, unordered_map&lt;string, double&gt;&gt; next;
+        unordered_set&lt;string&gt; all;
+        pair&lt;string, string&gt; cur;
+        double val;
+        for (int i = 0, len = equations.size(); i &lt; len; i++) {
+            cur = equations[i];
+            val = values[i];
+            next[cur.first][cur.second] = val;
+            next[cur.second][cur.first] = 1 / val;
+            all.insert(cur.first);
+            all.insert(cur.second);
         }
-        delete[] data;
-    }
-
-    bool solve() {
-        stack&lt;Node&gt; q;
-        bool inited = false;
-
-        q.push(Node(0, -1, 0));
-        while (!q.empty()) {
-            Node &amp;cur = q.top();
-            // cout &lt;&lt; cur.row &lt;&lt; &quot; &quot; &lt;&lt; cur.col &lt;&lt; &quot; &quot; &lt;&lt; cur.num &lt;&lt; endl;
-            t_node = cur;
-
-
-            if (inited) {
-                if (!cur.seted) {
-                    set(cur);
-                }
-                else {
-                    unset(cur);
-                    q.pop();
-                    continue;
-                }
-            }
-            else {
-                q.pop();
-                inited = true;
-            }
-
-            if (!next_space(t_node)) {
-                for (int i = 0; i &lt; 9; i++) {
-                    for (int j = 0; j &lt; 9; j++) {
-                        data[i][j] = data_int[i][j] + &apos;0&apos;;
-                    }
-                }
-                return true;
-            }
-
-            for (int i = 1; i &lt;= 9; i++) {
-                t_node.num = i;
-                if (isNotOccupied(t_node)) {
-                    q.push(t_node);
-                }
+        vector&lt;double&gt; rs(queries.size(), -1.0);
+        auto it = rs.begin();
+        for (auto &amp;i : queries) {
+            auto a_c = all;
+            if (next.find(i.first) == next.end() || next.find(i.second) == next.end()) {
+                *it++ = -1;
+            } else {
+                *it++ = dfs(i.first, i.second, next, a_c);
             }
         }
-        return false;
+        return rs;
     }
 
-    void display() {
-        for_each(data, data + 9, [&amp;](char *t) {
-            for (int i = 0; i &lt; 9; i++) {
-                cout &lt;&lt; t[i] &lt;&lt; &quot; &quot;;
+    double dfs(const string &amp;cur, const string &amp;goal,
+               unordered_map&lt;string, unordered_map&lt;string, double&gt;&gt; &amp;next,
+              unordered_set&lt;string&gt; &amp;all) {
+        if (cur == goal) {
+            return next.find(cur) != next.end() ? !!(next[cur].begin() -&gt; second) : -1;
+        }
+        if (next[cur].find(goal) != next[cur].end()) {
+            return next[cur][goal];
+        }
+        all.erase(cur);
+        auto &amp;next_set = next[cur];
+        double nextVal = -1;
+        for (auto &amp;i : next_set) {
+            if (all.find(i.first) == all.end()) {
+                continue;
             }
-            cout &lt;&lt; endl;
-        });
-    }
-
-private:
-    char **data;
-    bool row_occupied[9][10],
-        col_occupied[9][10],
-        block_occupied[9][10];
-
-    uint8_t data_int[9][10];
-    Node t_node;
-
-    void init(char t[9][10]) {
-        data = new char*[9];
-        for (int i = 0; i &lt; 9; i++) {
-            data[i] = new char[10];
-            for (int j = 0; j &lt; 10; j++) {
-                data[i][j] = t[i][j];
+            nextVal = dfs(i.first, goal, next, all);
+            if (nextVal != -1) {
+                return nextVal * i.second;
             }
         }
-        for (int i = 0; i &lt; 9; i++) {
-            for (int j = 0; j &lt; 9; j++) {
-
-                for (int num = 0; num &lt; 10; num++) {
-                    t_node.set(i, j, num, false);
-                    unset(t_node);
-                }
-
-            }
-        }
-
-        for (int row = 0; row &lt; 9; row++) {
-            for (int col = 0; col &lt; 9; col++) {
-                if (data[row][col] == &apos;.&apos;) {
-                    continue;
-                }
-                else {
-                    t_node.set(row, col, data[row][col] - &apos;0&apos;, false);
-                    set(t_node);
-                }
-            }
-        }
+        return -1;
     }
-
-    inline void set(Node &amp;cur) {
-        row_occupied[cur.row][cur.num] = true;
-        col_occupied[cur.col][cur.num] = true;
-        block_occupied[cur.block][cur.num] = true;
-        cur.seted = true;
-
-        data_int[cur.row][cur.col] = cur.num;
-    }
-
-    inline void unset(const Node &amp;cur) {
-        row_occupied[cur.row][cur.num] = false;
-        col_occupied[cur.col][cur.num] = false;
-        block_occupied[cur.block][cur.num] = false;
-
-        data_int[cur.row][cur.col] = &apos;.&apos;;
-    }
-
-    inline bool isNotOccupied(const Node &amp;cur) {
-        return (!row_occupied[cur.row][cur.num] &amp;&amp; !col_occupied[cur.col][cur.num] &amp;&amp; !block_occupied[cur.block][cur.num]);
-    }
-
-    inline bool next_space(Node &amp;cur) {
-        while (cur.row != 8 || cur.col != 8) {
-            ++cur.col;
-            if (cur.col == 9) {
-                ++cur.row;
-                cur.col = 0;
-            }
-            if (data[cur.row][cur.col] == &apos;.&apos;) {
-                cur.block = cur.row / 3 * 3 + cur.col / 3;
-                return true;
-            }
-        }
-        return false;
-    }
-
 };
-
-int main() {
-    char data[][10] = {
-        &quot;53..7....&quot;,
-        &quot;6..195...&quot;,
-        &quot;.98....6.&quot;,
-        &quot;8...6...3&quot;,
-        &quot;4..8.3..1&quot;,
-        &quot;7...2...6&quot;,
-        &quot;.6....28.&quot;,
-        &quot;...419..5&quot;,
-        &quot;....8..79&quot;
-    };
-    Solution t(data);
-    bool rs = t.solve();
-    if (rs) {
-        t.display();
-    }
-    else {
-        cout &lt;&lt; &quot;无解&quot; &lt;&lt; endl;
-    }
-
-    return 0;
-}
 </code></pre><hr>
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/sudoku.png" alt="Sudoku Solver" title="数独"></p>
+<p><img src="/img/Evaluate-Division.png" alt="Evaluate Division" title="result"></p>
 </blockquote>
 <hr>
 
@@ -406,19 +267,10 @@ int main() {
     
 <nav id="article-nav">
   
-    <a href="/2017/09/12/search/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          search
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/23/graphic/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Find-Median</div>
+      <div class="article-nav-title">图的分解</div>
     </a>
   
 </nav>

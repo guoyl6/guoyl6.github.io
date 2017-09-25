@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>图的分解 | 学海无涯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍一些图的性质，比如有向图中的树边、回边、横边、前向边、强连通分量等。">
+<meta name="keywords" content="dfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图的分解">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/23/graphic/index.html">
+<meta property="og:site_name" content="学海无涯">
+<meta property="og:description" content="介绍一些图的性质，比如有向图中的树边、回边、横边、前向边、强连通分量等。">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/graphic.png">
+<meta property="og:updated_time" content="2017-09-23T09:16:18.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图的分解">
+<meta name="twitter:description" content="介绍一些图的性质，比如有向图中的树边、回边、横边、前向边、强连通分量等。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/graphic.png">
+  <!--  -->
+  
+    <link rel="icon" href="/favicon.jpg">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/selfStyle.css" rel="stylesheet">
+  <link href="/css/re_landscape.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学海无涯</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">咸鱼翻身</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a href="javascript:(void 0)" id="main-nav-toggle" class="nav-icon mobile-nav"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar' title="收起或展开分类列表"></a>
+        <a class="main-nav-link fa fa-arrow-up" href="#header" title="回到顶部"></a>
+      </nav>
+      <!-- <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://guoyl6.github.io"></form>
+      </div> -->
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        
+          <aside id="sidebar">
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/">人工智能原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/search/">search</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/">算法分析与设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/分治/">分治</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/图的分解/">图的分解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/未分类/">未分类</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selection问题/">Selection问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dp/">dp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li></ul>
+    </div>
+    <pre>
+
+    </pre>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/24/Evaluate-Division/">Evaluate Division</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/23/graphic/">图的分解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/20/Maximum-Subarray/">Maximum Subarray</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/20/E03/">E03</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/17/Split-Array-into-Consecutive-Subsequences/">Split Array</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main">
+        <article id="post-graphic" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/23/graphic/" class="article-date">
+  <time datetime="2017-09-23T02:19:24.000Z" itemprop="datePublished">2017-09-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/图的分解/">图的分解</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图的分解
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/23/graphic/" data-id="cj7zt9307000q20u67g4sbnt9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>介绍一些图的性质，比如有向图中的树边、回边、横边、前向边、强连通分量等。</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h2 id="有向图"><a href="#有向图" class="headerlink" title="有向图"></a>有向图</h2><ul>
+<li><p>有向图的遍历 DFS</p>
+<pre><code>counter = 1, records = {}, prev = {}, post = {}
+TreeSearch(nodes, map):
+    for cur_node in nodes:
+        if (records.has(cur_node)):
+            ignore cur_node
+        else:
+            records[cur_node]
+
+        prev[cur_node] = counter
+        add counter
+
+        next_nodes = map[nodes]
+        TreeSearch(next, map)
+
+        post[nodes] = counter
+        add counter
+</code></pre><p>  <strong>上面的遍历与常规 DFS 差不多，只不过在遍历过程中对每个节点进行了遍历先后顺序的记录。那么记录这些节点访问顺序的先后有什么用呢？</strong></p>
+  <div class="info"><br>      这里介绍一些概念<br>      <dl><br>          <dt>根节点</dt><br>          <dd>即一棵搜索树中第一个遍历的节点</dd><br>          <dt>祖先节点</dt><br>          <dd>节点A在不停的往上回溯直至根节点停止的过程中所访问的节点均为A的祖先节点</dd><br>          <dt>后代节点</dt><br>          <dd>所有以节点A为根节点的节点均为A的后代节点</dd><br>          <dt>树边</dt><br>          <dd>若通过节点A访问了节点B且节点B未被访问过，则 A -&gt; B 为一条树边</dd><br>          <dt>回边</dt><br>          <dd>若通过节点A访问了节点B且节点B为节点A的祖先节点，则 A -&gt; B 为一条回边</dd><br>          <dt>前向边</dt><br>          <dd>若通过节点A访问了一个已被访问过的节点B，并且节点B为节点A的后代节点，则 A -&gt; B 为一条前向边</dd><br>          <dt>横边</dt><br>          <dd>若通过节点A访问了一个已被访问过的节点B，并且节点B不为节点A的祖先、后代节点，则 A -&gt; B 为一条横边</dd><br>      </dl><br>      上图（图是偷来的）<br>      <img src="/img/graphic.png" alt="边的分类" title="图的分解"><br>  </div>
+
+<p>  <strong>接下来，通过各种边的性质我们可以知道</strong></p>
+<ul>
+<li>树边 u -&gt; v<br>  先访问u，再访问v且v未被访问。此时有 <code>prev[u] &amp;&amp; !post[u] &amp;&amp; !prev[v] &amp;&amp; !post[v]</code></li>
+<li>回边 u -&gt; v<br>  先访问v，再访问u，然后再由u访问v，且此时v的遍历还未结束。此时必有 <code>prev[v] &lt; prev[u] &amp;&amp; !post[v] &amp;&amp; !post[u]</code></li>
+<li>前向边 u -&gt; v<br>  先访问u，再通过其他节点访问到v，然后再由u直接访问u，且此时u的遍历还未结束。此时有 <code>prev[u] &lt; prev[v] &lt; post[v] &amp;&amp; !post[u]</code></li>
+<li>横边 u -&gt; v<br>  先访问v，再访问u，然后u访问v，此时v的遍历已结束。此时有 <code>prev[v] &lt; post[v] &lt; pre[u] &amp;&amp; !post[u]</code></li>
+<li><strong>总结一下</strong><br>  在遍历结束后，若 u可到v，则有<br>   <strong>回边</strong>: prev[v] &lt; prev[u] &lt; post[u] &lt; post[v] -&gt; <strong>[{}]</strong><br>   <strong>树边或者前向边</strong>: prev[u] &lt; prev[v] &lt; post[v] &lt; post[u] -&gt; <strong>{[]}</strong><br>   <strong>横边</strong>: prev[v] &lt; post[v] &lt; prev[u] &lt; post[u] -&gt; <strong>[]{}</strong><br>   <code>{: prev[u], }: post[u], [: prev[v], ]:post[v]</code></li>
+</ul>
+</li>
+<li><p>拓扑排序</p>
+  <div class="info"><br>      对一个有向无环图(Directed Acyclic Graph简称DAG)G进行拓扑排序，是将G中所有顶点排成一个线性序列，使得排在后面的点没有一条边连着前面的点。<br>      通常，这样的线性序列称为满足拓扑次序(Topological Order)的序列，简称拓扑序列。<br>  </div>
+
+<ul>
+<li>算法1<br>  根据概念，首先这是一个无环图，且排在后面的点没有一条边连着前面的点。<br>  于是，我们对图进行DFS遍历，那么，该图中肯定不存在回边，假设后面的点u有一条边连着前面的点v，则这条边只有以下几种情况：<br>  <strong>树边或者前向边:</strong> prev[u] &lt; prev[v] &lt; post[v] &lt; post[u]<br>  <strong>横边</strong>: prev[v] &lt; post[v] &lt; prev[u] &lt; post[u]<br>  不管是哪种情况，都存在 <strong>post[v] &lt; post[u]</strong>，则只要我们按照post值从大到小排序，就不会出现从后面的点u连着前面的点v这种情况了。从而也就可以得到一个拓扑序列了。</li>
+<li><p>算法2<br>  引入概念</p>
+  <div class="info"><br>      <dl><br>          <dt>入度</dt><dd>进来的边的数量</dd><br>          <dt>出度</dt><dd>出去的边的数量</dd><br>          <dt>源顶点(source)</dt><dd>入度为0的点</dd><br>          <dt>汇定点(sink)</dt><dd>出度为0的点</dd><br>          <dt>DAG中都存在一个源顶点</dt><dd>一颗树中总会有一个根节点，若根节点入度也不为0且同时要求这颗树中不存在回边，那就只能是一条横边，该横边必然来源于另外一棵树，然而对于另外一颗树，又要求其根节点入度也不为0，此时又需要另一颗树，如此重复下去将无穷无尽，显然不行。故而DAG中都存在一个源顶点。</dd><br>          <dt>DAG中都存在一个汇顶点</dt><dd>一颗树中总会遍历结束，那对于这些位于底端的叶子节点，若其出度不为0且同时要求这颗树中不存在回边，因其位于底端，故而不会有树边和前向边，那么就只能是横边，然而横边指向的是已经遍历结束的、不互为祖先后代的节点，那么，对于第一个位于底端的叶子节点，他必然是第一个遍历结束的点，这时候他又应指向哪个已经遍历结束的节点？故而DAG中都存在一个汇顶点。</dd><br>      </dl><br>  </div>
+
+<p>  <strong>入度为0</strong>的点肯定就不会存在有其他点指向自己这种情况。于是我们对所有节点都采取以下操作</p>
+<ol>
+<li>若该节点入度为0，则添加到序列中，并将其指向的点的入度减一。</li>
+<li><p>若在入度减一的节点中出现入度为0，对其进行同样操作。<br>这样直到所有节点都被加入序列之后，该序列就是一个拓扑序列。<br><strong>有没有可能出现有些点没有被加入序列中，却没有入度为0的点了？</strong></p>
+<div class="info"><br> 不可能。若出现上面的情况，则意味着存在环。<br></div>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>强连通分量</p>
+  <div class="info"><br>      有向图强连通分量：在有向图G中，如果两个顶点vi,vj间（vi&gt;vj）有一条从vi到vj的有向路径，同时还有一条从vj到vi的有向路径，则称两个顶点强连通(strongly connected)。如果有向图G的每两个顶点都强连通，称G是一个强连通图。有向图的极大强连通子图，称为强连通分量(strongly connected components)。<br>  </div>
+
+<ul>
+<li><strong>强连通分量将图分解成DGA</strong><br>  若强连通分量不将图分解成DGA，则存在环，那么位于该环上的强连通分量就是互相可抵达的，这与强连通分量是极大的矛盾。</li>
+<li><strong>若强连通分量A指向B，则A中post最大的值必然大于B中post最大的值</strong><ul>
+<li>我们假设深搜时是从A中的某个点开始的，因为B中所有点都是强连通的，故而B中所有点访问结束之后才会借宿A中指向B中的那个点的访问，也就是说此时A中指向B中的那个点的post值将大于B中所有点的post值；</li>
+<li>我们假设深搜时是从B中的某个点开始的，因为A指向B且该图是DGA，则B不存在一条路径可以指向A，于是在B中所有可到达的点访问结束后才会对A中的点进行访问，于是A中点的post值将大于B中所有点的post值。</li>
+</ul>
+</li>
+<li><p><strong>post值最大的点必然处于源强连通分量里</strong><br>  有第2条属性可知，post值最大的点所处的强连通分量入度为0，故而其必然处于源强连通分量里。</p>
+<p><strong>根据上面三条属性，我们可以得到以下的划分方法：</strong></p>
+</li>
+</ul>
+<ol>
+<li>对图进行深搜，得到每个节点的post值</li>
+<li>将有向图的方向反转，则强连通分量依旧连通，而原图中的源强连通分量变为新图中的汇强连通分量（出度为0），而从汇强连通分量中的点是不会访问到其他强连通分量的点的。</li>
+<li>从post值最大的点对图进行深搜，待搜索结束后将所有遍历的点划为一个强连通分量并从新图中去除，重复步骤3直到图为空。</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/24/Evaluate-Division/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Evaluate Division
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/20/Maximum-Subarray/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Maximum Subarray</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+        </section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 郭悦林<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/show_hide.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
