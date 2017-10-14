@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>triangle | 学海无涯</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题来源 问题简介">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="triangle">
+<meta property="og:url" content="https://guoyl6.github.io/2017/09/30/triangle/index.html">
+<meta property="og:site_name" content="学海无涯">
+<meta property="og:description" content="问题来源 问题简介">
+<meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/triangle_short.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/triangle.png">
+<meta property="og:updated_time" content="2017-09-30T15:14:44.181Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="triangle">
+<meta name="twitter:description" content="问题来源 问题简介">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/triangle_short.png">
+  <!--  -->
+  
+    <link rel="icon" href="/favicon.jpg">
+  
+  <!-- 
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+   -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/selfStyle.css" rel="stylesheet">
+  <link href="/css/re_landscape.css" rel="stylesheet">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">学海无涯</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">咸鱼翻身</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a href="javascript:(void 0)" id="main-nav-toggle" class="nav-icon mobile-nav"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+        <a href="javascript:(void 0)" class="main-nav-link fa toggle_slide fa-toggle-down mobile-nav" data-target='#sidebar' title="收起或展开分类列表"></a>
+        <a class="main-nav-link fa fa-arrow-up" href="#header" title="回到顶部"></a>
+      </nav>
+      <!-- <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://guoyl6.github.io"></form>
+      </div> -->
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        
+          <aside id="sidebar">
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/">人工智能原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/search/">search</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/博弈搜索/">博弈搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/">算法分析与设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/分治/">分治</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/图的分解/">图的分解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/未分类/">未分类</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selection问题/">Selection问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/alpha-beta-search/">alpha-beta search</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dfs/">dfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dp/">dp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/二分查找/">二分查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分治/">分治</a></li></ul>
+    </div>
+    <pre>
+
+    </pre>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/14/candies/">candies</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/alpha-beta/">alpha-beta</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/E05/">E05</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/30/triangle/">triangle</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/26/E04/">E04</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main">
+        <article id="post-triangle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/30/triangle/" class="article-date">
+  <time datetime="2017-09-30T14:45:29.000Z" itemprop="datePublished">2017-09-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      triangle
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/09/30/triangle/" data-id="cj8qsk0tt001o8ku6qdv84vzz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://leetcode.com/problems/triangle/description/" title="最短路径" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p><img src="/img/triangle_short.png" alt="triangle"></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    前一行的节点到达下一行的某个节点（记为v）的代价是一样的，故而到达v时的最小消耗将由前一行可到达v值的两个节点的最小值决定。<br></div>
+
+<hr>
+<p>假设共有V个点。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O(V)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
+public:
+    int minimumTotal(vector&lt;vector&lt;int&gt;&gt;&amp; triangle) {
+        int res=0;
+        for(int i=1;i&lt;triangle.size();i++){
+            for(int j=0;j&lt;triangle[i].size();j++){
+                if(j==0){
+                    triangle[i][j]+=triangle[i-1][j];
+                }
+                else if(j==triangle[i].size()-1){
+                    triangle[i][j]+=triangle[i-1][j-1];
+                }
+                else{
+                    int mini;
+                    if(triangle[i-1][j]&gt;triangle[i-1][j-1])
+                        mini=triangle[i-1][j-1];
+                    else
+                        mini=triangle[i-1][j];
+                    triangle[i][j]+=mini;
+                }
+            }
+        }
+    res=triangle[triangle.size()-1][0];
+    for(int i=1;i&lt;triangle[triangle.size()-1].size();i++){
+
+        res=min(res,triangle[triangle.size()-1][i]);
+    }
+    return res;
+    }
+};
+</code></pre><hr>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p><img src="/img/triangle.png" alt="triangle" title="result"></p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/11/E05/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          E05
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/26/E04/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">E04</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+        </section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 郭悦林<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="https://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/show_hide.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
