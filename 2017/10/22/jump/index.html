@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 分治 | 学海无涯</title>
+  <title>Jump | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学海无涯">
-<meta property="og:url" content="https://guoyl6.github.io/tags/分治/index.html">
+  <meta name="description" content="问题来源 问题简介 给你一个一维数组，数组的每个值表示当前能跳跃的距离，从0开始跳跃，问根据题给的数组跳到最后一位的最小距离。（假设我们总是能跳到最后一位的）。eg：A = [2, 3, 1, 1, 0]，从 0 开始，第一步可以跳到 1 和 2 位置，若我们选择跳到 1 的话，接下来能跳到的位置有 2、3、4，若我们跳到位置4，则到达目标位置，总步数为2。">
+<meta name="keywords" content="c++,greedy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jump">
+<meta property="og:url" content="https://guoyl6.github.io/2017/10/22/jump/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="问题来源 问题简介 给你一个一维数组，数组的每个值表示当前能跳跃的距离，从0开始跳跃，问根据题给的数组跳到最后一位的最小距离。（假设我们总是能跳到最后一位的）。eg：A = [2, 3, 1, 1, 0]，从 0 开始，第一步可以跳到 1 和 2 位置，若我们选择跳到 1 的话，接下来能跳到的位置有 2、3、4，若我们跳到位置4，则到达目标位置，总步数为2。">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/jump.png">
+<meta property="og:updated_time" content="2017-10-22T07:35:09.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学海无涯">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="Jump">
+<meta name="twitter:description" content="问题来源 问题简介 给你一个一维数组，数组的每个值表示当前能跳跃的距离，从0开始跳跃，问根据题给的数组跳到最后一位的最小距离。（假设我们总是能跳到最后一位的）。eg：A = [2, 3, 1, 1, 0]，从 0 开始，第一步可以跳到 1 和 2 位置，若我们选择跳到 1 的话，接下来能跳到的位置有 2、3、4，若我们跳到位置4，则到达目标位置，总步数为2。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/jump.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -137,39 +141,117 @@
 </aside>
         
         <section id="main">
+        <article id="post-jump" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/22/jump/" class="article-date">
+  <time datetime="2017-10-22T07:08:06.000Z" itemprop="datePublished">2017-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/贪婪算法/">贪婪算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/13/Find-Median-from-Data-Stream/" class="archive-article-date">
-  <time datetime="2017-09-13T11:13:31.000Z" itemprop="datePublished">Sep 13</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/13/Find-Median-from-Data-Stream/">Find Median from Data Stream</a>
+    <h1 class="article-title" itemprop="name">
+      Jump
     </h1>
   
 
-    </header>
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/10/22/jump/" data-id="cj92fvw7m001gfou6g4we281d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/greedy/">greedy</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://leetcode.com/submissions/detail/124749114/" title="未定义问题来源" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p>给你一个一维数组，数组的每个值表示当前能跳跃的距离，从0开始跳跃，问根据题给的数组跳到最后一位的最小距离。（假设我们总是能跳到最后一位的）。<br>eg：<br>A = [2, 3, 1, 1, 0]，从 0 开始，第一步可以跳到 1 和 2 位置，若我们选择跳到 1 的话，接下来能跳到的位置有 2、3、4，若我们跳到位置4，则到达目标位置，总步数为2。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><div class="info"><br>    提出贪心算法：当前跳跃的距离取决于当前跳跃该距离之后能到达的最远距离，越大越好。<br>    则有以下问题：<br>    <ul><br>        <li>第一步是否是安全的？</li><br>        <li>该问题是否符合最优子结构？</li><br>    </ul><br>    证明：<br>    <ol><br>        <li>若不走第二步能到达的最远距离的那一步s1，则第二步所能到达的任何一个点都能通过s1到达，故而该贪心算法的第一步是安全的。</li><br>        <li>是</li><br>    </ol><br></div>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O(未知)</td>
+<td style="text-align:center">O(未知)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
+public:
+    int jump(vector&lt;int&gt;&amp; nums) {
+        return maximumJump(nums, 0, 0);
+    }
+    int maximumJump(vector&lt;int&gt;&amp; nums, int cur, int step) {
+        int val = nums[cur], maxIndex = cur, maxValue = val;
+        int size = nums.size(), end = val + cur;
+        if (cur == size - 1) {
+            return step;
+        }
+        if (end &gt;= size - 1) {
+            return step + 1;
+        }
+        for (int i = cur + 1; i &lt;= end; i++) {
+            int dis = nums[i] + i - cur;
+            if (dis &gt; maxValue) {
+                maxIndex = i;
+                maxValue = dis;
+            }
+        }
+        if (maxIndex == cur) {
+            return -1;
+        }
+        return maximumJump(nums, maxIndex, step + 1);
+    }
+};
+</code></pre><hr>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p><img src="/img/jump.png" alt="Jump" title="result"></p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/14/candies/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">candies</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
         </section>
