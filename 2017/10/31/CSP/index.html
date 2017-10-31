@@ -3,23 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>E01 | 学海无涯</title>
+  <title>CSP | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Problem">
+  <meta name="description" content="对约束满足问题的解决方法，包括BT、FC、MRV、GAC。">
 <meta name="keywords" content="c++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="E01">
-<meta property="og:url" content="https://guoyl6.github.io/2017/09/12/E01/index.html">
+<meta property="og:title" content="CSP">
+<meta property="og:url" content="https://guoyl6.github.io/2017/10/31/CSP/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="Problem">
+<meta property="og:description" content="对约束满足问题的解决方法，包括BT、FC、MRV、GAC。">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/MazeProblem.png">
-<meta property="og:image" content="https://guoyl6.github.io/img/Maze.png">
-<meta property="og:updated_time" content="2017-09-12T14:09:23.081Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/forward_checking_p1.png">
+<meta property="og:updated_time" content="2017-10-31T13:34:43.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="E01">
-<meta name="twitter:description" content="Problem">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/MazeProblem.png">
+<meta name="twitter:title" content="CSP">
+<meta name="twitter:description" content="对约束满足问题的解决方法，包括BT、FC、MRV、GAC。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/forward_checking_p1.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -142,10 +141,10 @@
 </aside>
         
         <section id="main">
-        <article id="post-E01" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-CSP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/09/12/E01/" class="article-date">
-  <time datetime="2017-09-12T13:59:21.000Z" itemprop="datePublished">2017-09-12</time>
+    <a href="/2017/10/31/CSP/" class="article-date">
+  <time datetime="2017-10-31T05:20:07.000Z" itemprop="datePublished">2017-10-31</time>
 </a>
     
   <div class="article-category">
@@ -160,14 +159,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      E01
+      CSP
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/09/12/E01/" data-id="cj9fnq7l40002rou6c4cydngf" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/10/31/CSP/" data-id="cj9fnq7l40000rou647176ga6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -175,117 +174,136 @@
     </footer>
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>Problem<br>  <img src="/img/MazeProblem.png" alt="MazeProblem"></li>
-</ul>
+        <blockquote>
+<p>对约束满足问题的解决方法，包括BT、FC、MRV、GAC。</p>
+</blockquote>
 <a id="more"></a>
 <ul>
-<li>Code</li>
+<li><a href="#BT">BT</a></li>
+<li><a href="#FC">FC</a></li>
+<li><a href="#MRV">MRV</a></li>
+<li><a href="#GAC">GAC</a></li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;stack&gt;
-#include &lt;vector&gt;
-#include &lt;sstream&gt;
-#include &lt;algorithm&gt;
-#include &lt;functional&gt;
-using namespace std;
-int row = 5, col = 5, length = col * row;
-
-class Node {
-public:
-    Node(int x = 0, int y = 0) : x(x), y(y), index(x*5+y) {}
-    int toIndex() {
-        return index;
-    }
-    int isValid() {
-        return 0 &lt;= x &amp;&amp; x &lt; row &amp;&amp; 0 &lt;= y &amp;&amp; y &lt; col;
-    }
-    Node move(int x_dis, int y_dis) {
-        return Node(x + x_dis, y + y_dis);
-    }
-    string toString() {
-        string t;
-        stringstream ss;
-        ss &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;,&quot; &lt;&lt; y &lt;&lt; &quot;)&quot;;
-        ss &gt;&gt; t;
-        return t;
-    }
-private:
-    int x;
-    int y;
-    int index;
-};
-
-void inputData(int *area) {
-    for (int i = 0; i &lt; length; i++) {
-        cin &gt;&gt; area[i];
-    }
-}
-
-void search(int *area, int length, vector&lt;Node&gt; &amp;rs) {
-    bool *moved = new bool [length];
-    int direction[][2] = {
-        {0, -1},
-        {0, 1},
-        {-1, 0},
-        {1, 0}
-    };
-    stack&lt;Node&gt; path;
-    Node next;
-
-    function&lt;bool(Node)&gt; find = [&amp;](Node cur) -&gt; bool {
-        moved[cur.toIndex()] = true;
-        path.push(cur);
-
-        if (cur.toIndex() == length - 1) {
-            return true;
-        }
-        for (int i = 0; i &lt; 4; i++) {
-            next = cur.move(direction[i][0], direction[i][1]);
-            if (next.isValid() &amp;&amp; area[next.toIndex()] != 1 &amp;&amp; !moved[next.toIndex()] &amp;&amp; find(next)) {
-                return true;
-            }
-        }
-        path.pop();
-        return false;
-    };
-
-    for (int i = 0; i &lt; length; i++) {
-        moved[i] = false;
-    }
-
-    rs.clear();
-    find(Node(0, 0));
-    if (path.size()) {
-        while (!path.empty()) {
-            rs.insert(rs.begin(), path.top());
-            path.pop();
-        }
-    }
-
-    delete[] moved;
-}
-
-void display(vector&lt;Node&gt; rs) {
-    if (rs.size()) {
-        for_each(rs.begin(), rs.end(), [](Node t)-&gt;void{ cout &lt;&lt; t.toString() &lt;&lt; endl; });
-    }
-    else {
-        cout &lt;&lt; &quot;No Result&quot; &lt;&lt; endl;
-    }
-
-}
-
-int main() {
-    int area[25];
-    vector&lt;Node&gt; rs;
-    inputData(area);
-    search(area, 25, rs);
-    display(rs);
-    return 0;
-}
-</code></pre><ul>
-<li>Result<br>  <img src="/img/Maze.png" alt="MazeResult"></li>
+<h2 id="information"><a href="#information" class="headerlink" title="information"></a>information</h2><p>一个约束满足问题（CSP）具备以下性质：</p>
+<ul>
+<li>一系列变量V1……Vn</li>
+<li>每个变量Vi有多个取值的可能，记为域Di</li>
+<li>每个变量Vi有其约束条件Ci</li>
+</ul>
+<p>约束满足问题的解：</p>
+<ul>
+<li>每个变量都已取值</li>
+<li>对于每个变量Vi，其约束条件Ci都能得到满足</li>
+</ul>
+<hr>
+<h2 id="BT"><a href="#BT" class="headerlink" title="BT"></a>BT</h2><p>Back Tracking，即回溯算法。</p>
+<ul>
+<li>算法思路<br>  尝试从剩余未取值变量的选取一个Vi，依次对其赋予Di中的值d。<ul>
+<li>若与已填充值发生冲突，则代表在此刻、对于Vi，不该填充该值d，则进行下一次取值尝试</li>
+<li>若Di中的所有值都不可取，则意味着当前状态下的CSP是无解的，亦即上一个取值Vj是不合理的</li>
+<li>否则，以Vi=d的条件下继续下一次赋值  </li>
+</ul>
+</li>
+<li>伪代码<pre><code>BT(level):
+    if all V is assigned:
+        we get a solution
+        return True
+    Pick a unassigned Vi
+    Di = Domain(Vi)
+    Assigned[Vi] = True
+    for d in Di:
+        Vi = d
+        Valid = True
+        for all other Assigned Vj:
+            if (C(Vj, Vi) is not OK):
+                Valid = False
+                Break
+        if Valid:
+            BT(level + 1)
+    Assigned[Vi] = False
+    return False
+</code></pre></li>
+</ul>
+<hr>
+<h2 id="FC"><a href="#FC" class="headerlink" title="FC"></a>FC</h2><p>Forward Checking，即前向检测</p>
+<ul>
+<li>算法思路<br>  该算法基于回溯算法，弥补了回溯算法的一些缺点。<br>  分析以下情况：<br>  <img src="/img/forward_checking_p1.png" alt="problem"><br>  图中红点处是无值可取的，然而，只是使用回溯算法的话，要一直遍历该点前的所有变量Vi和其所有的值Di才能判断该CSP是无解的。<br>  若是我们在遍历过程中，能够知道某个变量Vi的作用域Di为空，就可以提前知道当前CSP状态是无解的，也就是这里的Forward Checking。</li>
+<li>伪代码<pre><code>FC_UPDATE(Vi):
+    for Vi&apos;s all other relative and unAssigned Vj:
+        Dj = Domain(Vj)
+        for p_d in Dj:
+            if &apos;Vj = p_d&apos; makes C(Vi, Vj) is not OK:
+                remove p_d from Dj
+        if Dj is empty:
+            FC_UPDATE is not OK
+            return False
+    FC_UPDATE is OK
+    return True
+FC(level)
+    if all V is assigned:
+        we get a solution
+        return True
+    Pick a unassigned Vi
+    Di = Domain(Vi)
+    Assigned[Vi] = True
+    for d in Di:
+        Vi = d
+        dwo_occured = (FC_UPDATE(Vi) is not OK)?
+        if (dwo_occured):
+            ResotreAllDomainChangedByFC_UPDATE();
+        else:
+            FC(level + 1)
+    Assigned[Vi] = False
+    return False
+</code></pre></li>
+</ul>
+<h2 id="MRV"><a href="#MRV" class="headerlink" title="MRV"></a>MRV</h2><p>Minimum Remaining Values Heuristics<br>这是一种策略，即在所有未赋值变量Vi中，选取Di的长度最小的那个Vi作为下一个赋值变量。<br>原理是减小节点展开次数，提高搜索效率。</p>
+<h2 id="GAC"><a href="#GAC" class="headerlink" title="GAC"></a>GAC</h2><p>Generalized Arc Consistency</p>
+<ul>
+<li>算法原理<br>个人理解，这是对FC的优化。GAC通过一些逻辑错误来减少更多的节点。<br>首先，我们称Vi是一致的，当且仅当对Di中的任意一个值，Dj都存在一个值使得C(X, Vj…)是满足的。<br>则，若Di中的某个值d不能满足这种要求，赋予Vi这个值将无法使得所有V都被赋值，亦即此时d是可以被删除的。</li>
+<li>伪代码<pre><code>GAC_ENFORCE(Vi):
+    all_consistent = True
+    for all relative and unAssigned Vj:
+        Dj = Dom(Vj)
+        for d in Dj:
+            Vj_consistent_for_d = True
+            for all other Vk:
+                Dk = Dom(Vk)
+                has_some_value = False
+                for k in Dk:
+                    if (&apos;Vj == d&apos; and &apos;Vk == k&apos;) makes C(Vi, Vj) OK:
+                        has_some_value = True
+                        break
+                if not has_some_value:
+                    Vj_consistent_for_d = False
+                    break
+            if not Vj_consistent_for_d:
+                all_consistent = False
+                remove d in Dj
+        if Vj becomes Empty:
+            GAC_ENFORCE is not OK
+            return FALSE
+    if not all_consistent:
+        return GAC_ENFORCE(Vi)
+    else:
+        return True
+GAC(Level):
+    if all V is assigned:
+        we get a solution
+        return True
+    Pick a unassigned Vi
+    Di = Domain(Vi)
+    Assigned[Vi] = True
+    for d in Di:
+        Vi = d
+        dwo_occured = (FC_UPDATE(Vi) is not OK)? || (GAC_ENFORCE(Vi) is not OK)?
+        if (dwo_occured):
+            ResotreAllDomainChanged();
+        else:
+            FC(level + 1)
+    Assigned[Vi] = False
+    return False
+</code></pre></li>
 </ul>
 
       
@@ -296,19 +314,10 @@ int main() {
     
 <nav id="article-nav">
   
-    <a href="/2017/09/12/E02/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          E02
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/09/12/search/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/10/25/Stickers-to-Spell-Word/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">search</div>
+      <div class="article-nav-title">Stickers to Spell Word</div>
     </a>
   
 </nav>
