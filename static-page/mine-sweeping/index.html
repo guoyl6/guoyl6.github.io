@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8"/>
+	<title>扫雷</title>
+	<script type="text/javascript" src="lib/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<h1 class='text-center'>扫雷小游戏</h1>
+	<div id="controller" class='text-center'>
+		<label>
+			<span>行: </span>
+			<input type="number" value="10" id="row">
+		</label>
+		<label>
+			<span>列: </span>
+			<input type="number" value="10" id="column">
+		</label>
+		<label>
+			<span>雷数: </span>
+			<input type="number" value="10" id="lei-shu">
+		</label>
+		<input type="button" id="restart" value="restart">
+	</div>
+	<div id="area">
+		
+	</div>
+</body>
+</html>
