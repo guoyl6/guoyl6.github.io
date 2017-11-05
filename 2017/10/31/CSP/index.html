@@ -14,7 +14,7 @@
 <meta property="og:description" content="对约束满足问题的解决方法，包括BT、FC、MRV、GAC。">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="https://guoyl6.github.io/img/forward_checking_p1.png">
-<meta property="og:updated_time" content="2017-10-31T13:34:43.096Z">
+<meta property="og:updated_time" content="2017-11-03T03:28:41.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSP">
 <meta name="twitter:description" content="对约束满足问题的解决方法，包括BT、FC、MRV、GAC。">
@@ -78,7 +78,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/">人工智能原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/search/">search</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/博弈搜索/">博弈搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/">算法分析与设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/分治/">分治</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/图的分解/">图的分解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/贪婪算法/">贪婪算法</a></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hello/">hello</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/">人工智能原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/search/">search</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/人工智能原理/博弈搜索/">博弈搜索</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/">算法分析与设计</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/分治/">分治</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/动态规划/">动态规划</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/图的分解/">图的分解</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/未分类/">未分类</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法分析与设计/贪婪算法/">贪婪算法</a></li></ul></li></ul>
     </div>
   </div>
 
@@ -101,7 +101,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
     </div>
   </div>
 
@@ -112,6 +112,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/11/05/Word-Break/">Word Break</a>
+          </li>
         
           <li>
             <a href="/2017/10/31/CSP/">CSP</a>
@@ -127,10 +131,6 @@
         
           <li>
             <a href="/2017/10/14/candies/">candies</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/11/alpha-beta/">alpha-beta</a>
           </li>
         
       </ul>
@@ -166,7 +166,7 @@
       </header>
     
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/10/31/CSP/" data-id="cj9gdg5zv00007gu6vii6bxr3" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/10/31/CSP/" data-id="cj9ms3yrk0007q0u6kfudsvio" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -263,29 +263,23 @@ FC(level)
 <li>算法原理<br>个人理解，这是对FC的优化。GAC通过一些逻辑错误来减少更多的节点。<br>首先，我们称Vi是一致的，当且仅当对Di中的任意一个值，Dj都存在一个值使得C(X, Vj…)是满足的。<br>则，若Di中的某个值d不能满足这种要求，赋予Vi这个值将无法使得所有V都被赋值，亦即此时d是可以被删除的。</li>
 <li>伪代码<pre><code>GAC_ENFORCE(Vi):
     all_consistent = True
-    for all relative and unAssigned Vj:
+    queue = all relative and unAssigned Vj of Vi
+    and queue is non-repeatable
+    while queue not Empty:
+        pick a Vj in queue
         Dj = Dom(Vj)
+        Vj_consistent = True
         for d in Dj:
-            Vj_consistent_for_d = True
-            for all other Vk:
-                Dk = Dom(Vk)
-                has_some_value = False
-                for k in Dk:
-                    if (&apos;Vj == d&apos; and &apos;Vk == k&apos;) makes C(Vi, Vj) OK:
-                        has_some_value = True
-                        break
-                if not has_some_value:
-                    Vj_consistent_for_d = False
-                    break
-            if not Vj_consistent_for_d:
-                all_consistent = False
-                remove d in Dj
-        if Vj becomes Empty:
-            GAC_ENFORCE is not OK
-            return FALSE
-    if not all_consistent:
-        return GAC_ENFORCE(Vi)
-    else:
+            for all relative and unAssigned Vk of Vj:
+                if Vk has not possible value make C(Vj, Vk) OK:
+                    remove d in Dj
+                    Vj_consistent = False
+                    if Vj becomes Empty:
+                        GAC_ENFORCE is not OK
+                        return False
+        if (!Vj_consistent):
+            push all relative and unAssigned Vk of Vj into queue
+        GAC_ENFORCE is OK
         return True
 GAC(Level):
     if all V is assigned:
@@ -301,6 +295,7 @@ GAC(Level):
             ResotreAllDomainChanged();
         else:
             FC(level + 1)
+    Vi = Empty
     Assigned[Vi] = False
     return False
 </code></pre></li>
@@ -313,6 +308,15 @@ GAC(Level):
   
     
 <nav id="article-nav">
+  
+    <a href="/2017/11/05/Word-Break/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Word Break
+        
+      </div>
+    </a>
   
   
     <a href="/2017/10/25/Stickers-to-Spell-Word/" id="article-nav-older" class="article-nav-link-wrap">

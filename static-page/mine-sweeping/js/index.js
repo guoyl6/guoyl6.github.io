@@ -14,6 +14,7 @@ function randomItems(arr, nums) {
 	return rs;
 }
 
+// Model
 function SaoLei(width, height, LeiShu) {
 	this.init(width, height, LeiShu);
 }
@@ -196,8 +197,46 @@ SaoLei.EMPTY = 0;
 SaoLei.LEI = -1;
 
 
-// view
+// View
+function render_saolei($area, obj) {
+	$area.empty().append(
+		obj.area.map(function(value, index) {
+			return $("<div></div>").addClass(['item', obj.state[index]].join(' '));
+		})
+	).width(obj.width * $area.children().outerWidth()).height(obj.height * $area.children().outerHeight());
+}
+function fresh_saolei($area, obj) {
+	if (obj.win || obj.died) {
+		obj.showAll();
+		setTimeout($area.trigger.bind($area), 30, obj.win ? 'game_win' : 'game_died')
+	}
+	$area.children('.item').each(function(index, dom) {
+		var $dom = $(this);
+		for (var key in SaoLei.STATE) {
+			$dom.removeClass(SaoLei.STATE[key]);
+		}
+		$dom.addClass(obj.state[index]);
+		if (obj.state[index] != SaoLei.STATE.HIDDEN && obj.state[index] != SaoLei.STATE.TAG) {
+			if (obj.area[index] == SaoLei.LEI) {
+				$dom.addClass('lei');
+			} else if (obj.area[index] == SaoLei.EMPTY) {
+				$dom.addClass('empty');
+			} else {
+				$dom.addClass('num').text(obj.area[index]);
+			}
+		}
+	})
+}
 
+function showWin() {
+	alert('你赢了！');
+}
+
+function showLose() {
+	alert('你输了....')
+}
+
+// Controller
 $(function() {
 	var obj = new SaoLei(10, 10, 10);
 	var $area = $("#area"),
@@ -206,35 +245,7 @@ $(function() {
 		$column = $("#column"),
 		$leiShu = $("#lei-shu");
 
-	function render_saolei($area, obj) {
-		$area.empty().append(
-			obj.area.map(function(value, index) {
-				return $("<div></div>").addClass(['item', obj.state[index]].join(' '));
-			})
-		).width(obj.width * $area.children().outerWidth()).height(obj.height * $area.children().outerHeight());
-	}
-	function fresh_saolei($area, obj) {
-		if (obj.win || obj.died) {
-			obj.showAll();
-			setTimeout($area.trigger.bind($area), 30, obj.win ? 'game_win' : 'game_died')
-		}
-		$area.children('.item').each(function(index, dom) {
-			var $dom = $(this);
-			for (var key in SaoLei.STATE) {
-				$dom.removeClass(SaoLei.STATE[key]);
-			}
-			$dom.addClass(obj.state[index]);
-			if (obj.state[index] != SaoLei.STATE.HIDDEN && obj.state[index] != SaoLei.STATE.TAG) {
-				if (obj.area[index] == SaoLei.LEI) {
-					$dom.addClass('lei');
-				} else if (obj.area[index] == SaoLei.EMPTY) {
-					$dom.addClass('empty');
-				} else {
-					$dom.addClass('num').text(obj.area[index]);
-				}
-			}
-		})
-	}
+	
 	render_saolei($area, obj);
 	$area
 	.on('selectstart', false)
@@ -274,10 +285,10 @@ $(function() {
 		};
 	})
 	.on('game_win', function() {
-		alert('你赢了！');
+		showWin();
 	})
 	.on('game_died', function() {
-		alert('你输了....')
+		showLose();
 	})
 
 
