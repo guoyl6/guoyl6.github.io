@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: dfs | 学海无涯</title>
+  <title>coin change | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学海无涯">
-<meta property="og:url" content="https://guoyl6.github.io/tags/dfs/index.html">
+  <meta name="description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
+<meta name="keywords" content="c++,dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="coin change">
+<meta property="og:url" content="https://guoyl6.github.io/2017/11/18/coin-change/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/coin-change.png">
+<meta property="og:updated_time" content="2017-11-18T09:28:39.020Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学海无涯">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="coin change">
+<meta name="twitter:description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/coin-change.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -137,96 +141,117 @@
 </aside>
         
         <section id="main">
+        <article id="post-coin-change" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/18/coin-change/" class="article-date">
+  <time datetime="2017-11-18T08:51:34.000Z" itemprop="datePublished">2017-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/动态规划/">动态规划</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/24/Evaluate-Division/" class="archive-article-date">
-  <time datetime="2017-09-24T05:59:25.000Z" itemprop="datePublished">Sep 24</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/24/Evaluate-Division/">Evaluate Division</a>
+    <h1 class="article-title" itemprop="name">
+      coin change
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/23/graphic/" class="archive-article-date">
-  <time datetime="2017-09-23T02:19:24.000Z" itemprop="datePublished">Sep 23</time>
-</a>
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/11/18/coin-change/" data-id="cja54twkx001im0u62mp8vx65" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/23/graphic/">图的分解</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/10/Sudoku-Solver/" class="archive-article-date">
-  <time datetime="2017-09-10T06:53:21.000Z" itemprop="datePublished">Sep 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Sudoku-Solver/">Sudoku Solver</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/">dp</a></li></ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/08/n-Queens/" class="archive-article-date">
-  <time datetime="2017-09-08T12:25:44.000Z" itemprop="datePublished">Sep 8</time>
-</a>
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/08/n-Queens/">n-Queens</a>
-    </h1>
-  
+        <ul>
+<li><a href="https://leetcode.com/problems/coin-change/description/" title="leetcode" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p>找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。<br>注：零钱面额是不固定的。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li>coins: 零钱面额</li>
+<li>amount: 需找的钱数</li>
+<li>dp[i]: amount为i时所需的做少零钱数。1 &lt;= i &lt;= amount</li>
+</ul>
+<ul>
+<li><strong>则dp[i]的值为（初始化为无穷大）</strong><ul>
+<li>无穷大 : i &lt; 0</li>
+<li>0 : i == 0</li>
+<li>min(dp[i-coins[1]], dp[i-coins[2]], …., dp[i-coins[n]]) + 1 : 1 &lt;= i &lt;= amount</li>
+</ul>
+</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O(未知)</td>
+<td style="text-align:center">O(未知)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
+public:
+    int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
+        vector&lt;int&gt; dp(amount + 1, INT_MAX);
+        dp[0] = 0;
+        for (int i = 1, prev; i &lt;= amount; i++) {
+            for (auto coin : coins) {
+                prev = i - coin;
+                if (prev &gt;= 0 &amp;&amp; dp[prev] != INT_MAX) {
+                    dp[i] = min(dp[i], dp[prev] + 1);
+                }
+            }
+        }
+        return dp[amount] == INT_MAX ? -1 : dp[amount];
+    }
+};
+</code></pre><hr>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p><img src="/img/coin-change.png" alt="coin change" title="result"></p>
+</blockquote>
+<hr>
 
-    </header>
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/05/Word-Break/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Word Break</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
         </section>
