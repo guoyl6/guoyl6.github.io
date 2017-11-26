@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 二分查找 | 学海无涯</title>
+  <title>Unique Paths | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="学海无涯">
-<meta property="og:url" content="https://guoyl6.github.io/tags/二分查找/index.html">
+  <meta name="description" content="问题来源 问题简介">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unique Paths">
+<meta property="og:url" content="https://guoyl6.github.io/2017/11/26/Unique-Paths/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="问题来源 问题简介">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://guoyl6.github.io/img/Unique_paths_qs.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/Unique-Paths.png">
+<meta property="og:updated_time" content="2017-11-26T15:42:13.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="学海无涯">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="Unique Paths">
+<meta name="twitter:description" content="问题来源 问题简介">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/Unique_paths_qs.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -137,39 +142,123 @@
 </aside>
         
         <section id="main">
+        <article id="post-Unique-Paths" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/26/Unique-Paths/" class="article-date">
+  <time datetime="2017-11-26T15:32:15.000Z" itemprop="datePublished">2017-11-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/算法分析与设计/">算法分析与设计</a>►<a class="article-category-link" href="/categories/算法分析与设计/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/09/10/Median-of-Two-Sorted-Arrays/" class="archive-article-date">
-  <time datetime="2017-09-10T04:58:44.000Z" itemprop="datePublished">Sep 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/10/Median-of-Two-Sorted-Arrays/">Find-Median</a>
+    <h1 class="article-title" itemprop="name">
+      Unique Paths
     </h1>
   
 
-    </header>
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="https://guoyl6.github.io/2017/11/26/Unique-Paths/" data-id="cjagxqnit0016kcu6008kegfo" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="https://leetcode.com/problems/unique-paths/description/" title="leetcode" target="_blank" rel="external">问题来源</a></li>
+<li>问题简介<blockquote>
+<p><img src="/img/Unique_paths_qs.png" alt="unique_paths question"></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>因为机器人只能走右或下，所以在m行n列的地图中：</p>
+<ul>
+<li><strong>dp[i][j]: i &lt;= m, j &lt;= n</strong><ul>
+<li>1 : (i = 1, j = 1)</li>
+<li>dp[i-1][j] + dp[i][j-1] : {1 &lt; i &lt;= m, 1 &lt; j &lt;= n}</li>
+</ul>
+</li>
+</ul>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O(m*n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        int dp[100][100];
+        for (int j = 0; j &lt; n; j++) {
+            dp[0][j] = 1;
+        }
+        for (int i = 0; i &lt; m; i++) {
+            dp[i][0] = 1;
+        }
+        for (int i = 1; i &lt; m; i++) {
+            for (int j = 1; j &lt; n; j++) {
+                dp[i][j] = dp[i][j-1] + dp[i-1][j];
+            }
+        }
+        return dp[m-1][n-1];
+    }
+};
+</code></pre><hr>
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
+<p><img src="/img/Unique-Paths.png" alt="Unique Paths" title="result"></p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/26/fffdd-ff/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          fffdd ff
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/18/coin-change/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">coin change</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
         </section>
