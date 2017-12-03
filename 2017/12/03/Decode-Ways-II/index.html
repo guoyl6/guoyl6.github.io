@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>coin change | 学海无涯</title>
+  <title>Decode Ways II | 学海无涯</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
+  <meta name="description" content="问题来源 问题简介">
 <meta name="keywords" content="c++,dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="coin change">
-<meta property="og:url" content="https://guoyl6.github.io/2017/11/18/coin-change/index.html">
+<meta property="og:title" content="Decode Ways II">
+<meta property="og:url" content="https://guoyl6.github.io/2017/12/03/Decode-Ways-II/index.html">
 <meta property="og:site_name" content="学海无涯">
-<meta property="og:description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
+<meta property="og:description" content="问题来源 问题简介">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="https://guoyl6.github.io/img/coin-change.png">
-<meta property="og:updated_time" content="2017-11-26T15:37:55.135Z">
+<meta property="og:image" content="https://guoyl6.github.io/img/Decode-Ways-II-qs.png">
+<meta property="og:image" content="https://guoyl6.github.io/img/Decode-Ways-II.png">
+<meta property="og:updated_time" content="2017-12-03T10:35:09.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="coin change">
-<meta name="twitter:description" content="问题来源 问题简介 找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。注：零钱面额是不固定的。">
-<meta name="twitter:image" content="https://guoyl6.github.io/img/coin-change.png">
+<meta name="twitter:title" content="Decode Ways II">
+<meta name="twitter:description" content="问题来源 问题简介">
+<meta name="twitter:image" content="https://guoyl6.github.io/img/Decode-Ways-II-qs.png">
   <!--  -->
   
     <link rel="icon" href="/favicon.jpg">
@@ -141,10 +142,10 @@
 </aside>
         
         <section id="main">
-        <article id="post-coin-change" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Decode-Ways-II" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/11/18/coin-change/" class="article-date">
-  <time datetime="2017-11-18T08:51:34.000Z" itemprop="datePublished">2017-11-18</time>
+    <a href="/2017/12/03/Decode-Ways-II/" class="article-date">
+  <time datetime="2017-12-03T10:18:23.000Z" itemprop="datePublished">2017-12-03</time>
 </a>
     
   <div class="article-category">
@@ -159,14 +160,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      coin change
+      Decode Ways II
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="https://guoyl6.github.io/2017/11/18/coin-change/" data-id="cjaqms1dq001vr4u6ntlcd7gb" class="article-share-link">Share</a>
+      <a data-url="https://guoyl6.github.io/2017/12/03/Decode-Ways-II/" data-id="cjaqms1bz0002r4u6e0xpuso3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dp/">dp</a></li></ul>
@@ -175,26 +176,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><a href="https://leetcode.com/problems/coin-change/description/" title="leetcode" target="_blank" rel="external">问题来源</a></li>
+<li><a href="https://guoyl6.github.io/" title="https://leetcode.com/problems/decode-ways-ii/description/">问题来源</a></li>
 <li>问题简介<blockquote>
-<p>找零，给你提供无限的零钱和一个需找的钱数，问可以用最少几张零钱完成？若无法完成，则返回-1。<br>注：零钱面额是不固定的。</p>
+<p><img src="/img/Decode-Ways-II-qs.png" alt="questioin"></p>
 </blockquote>
 </li>
 </ul>
 <hr>
 <a id="more"></a>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
-<li>coins: 零钱面额</li>
-<li>amount: 需找的钱数</li>
-<li>dp[i]: amount为i时所需的做少零钱数。1 &lt;= i &lt;= amount</li>
-</ul>
-<ul>
-<li><strong>则dp[i]的值为（初始化为无穷大）</strong><ul>
-<li>无穷大 : i &lt; 0</li>
-<li>0 : i == 0</li>
-<li>min(dp[i-coins[1]], dp[i-coins[2]], …., dp[i-coins[n]]) + 1 : 1 &lt;= i &lt;= amount</li>
+<li>count(c): c字符的解码方法数，有效值是 1 - 9</li>
+<li>count(a, b): 数字ab的解码方法数，有效值为 10 - 26。</li>
+<li>dp[i]: 前i个字符串解码方法数<ul>
+<li>count(s[1]): i = 1</li>
+<li>dp[1] * count(s[2]) + count(s[1], s[2]): i = 2</li>
+<li>dp[i-1] * count(s[i]) + dp[i-2] * count(s[i-1], s[i]): 2 &lt;= i &lt;= n;</li>
 </ul>
 </li>
+<li>则<br>结果为 dp[n]</li>
 </ul>
 <hr>
 <table>
@@ -206,31 +205,61 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">O(未知)</td>
-<td style="text-align:center">O(未知)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n)</td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><pre><code>class Solution {
 public:
-    int coinChange(vector&lt;int&gt;&amp; coins, int amount) {
-        vector&lt;int&gt; dp(amount + 1, INT_MAX);
-        dp[0] = 0;
-        for (int i = 1, prev; i &lt;= amount; i++) {
-            for (auto coin : coins) {
-                prev = i - coin;
-                if (prev &gt;= 0 &amp;&amp; dp[prev] != INT_MAX) {
-                    dp[i] = min(dp[i], dp[prev] + 1);
-                }
-            }
+    int numDecodings(string s) {
+        int n = s.length();
+        long dp[n], c_prev, n_c;
+        dp[0] = noCombine(1, s[0]);
+        if (n &lt; 2) {
+            return dp[0];
         }
-        return dp[amount] == INT_MAX ? -1 : dp[amount];
+        dp[1] = noCombine(dp[0], s[1]) + combine(1, s[0], s[1]);
+        for (int i = 2; i &lt; n; i++) {
+            dp[i] = (noCombine(dp[i-1], s[i]) + combine(dp[i-2], s[i-1], s[i])) % 1000000007;
+
+        }
+        return dp[n-1];
+    }
+    long noCombine(long dp, char s) {
+        if (s == &apos;0&apos;) {
+            return 0;
+        }
+        return dp * (s == &apos;*&apos; ? 9 : 1);
+    }
+    long combine(long dp, char s1, char s2) {
+        int count = 1;
+        if (s1 == &apos;1&apos;) {
+            if (s2 == &apos;*&apos;) {
+                count = 9;
+            }
+        } else if (s1 == &apos;2&apos;) {
+            if (s2 == &apos;*&apos;) {
+                count = 6;
+            } else if (s2 &gt; &apos;6&apos;) {
+                count = 0;
+            }
+        } else if (s1 == &apos;*&apos;) {
+            if (s2 == &apos;*&apos;) {
+                count = 15;
+            } else if (s2 &lt;= &apos;6&apos;) {
+                count = 2;
+            }
+        } else {
+            count = 0;
+        }
+        return count * dp;
     }
 };
 </code></pre><hr>
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><blockquote>
-<p><img src="/img/coin-change.png" alt="coin change" title="result"></p>
+<p><img src="/img/Decode-Ways-II.png" alt="Decode Ways II" title="result"></p>
 </blockquote>
 <hr>
 
@@ -242,19 +271,10 @@ public:
     
 <nav id="article-nav">
   
-    <a href="/2017/11/26/Unique-Paths/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Unique Paths
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/05/Word-Break/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/11/26/Unique-Paths/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Word Break</div>
+      <div class="article-nav-title">Unique Paths</div>
     </a>
   
 </nav>
